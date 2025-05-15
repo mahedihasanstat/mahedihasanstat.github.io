@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>Mahedi Hasan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Font Awesome for icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,7 +15,6 @@
       background-color: #fff;
       color: #222;
     }
-
     nav {
       background-color: #1f77b4;
       color: white;
@@ -30,55 +29,45 @@
       z-index: 1000;
       font-size: 1.1rem;
     }
-
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     .container {
       max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1.5rem;
     }
-
     .intro {
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
       gap: 2rem;
     }
-
     .intro img {
       width: 220px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     }
-
     .left-panel {
       flex: 1;
       min-width: 240px;
     }
-
     .contact {
       margin-top: 1.2rem;
       font-size: 0.9rem;
       color: #333;
     }
-
     .contact a {
       text-decoration: none;
     }
-
     .contact .icon {
       margin-right: 8px;
     }
-
     .button-link {
       display: inline-block;
       margin-top: 0.6rem;
@@ -92,17 +81,14 @@
       transition: background-color 0.3s ease, box-shadow 0.2s ease;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
     .button-link i {
       margin-right: 6px;
     }
-
     .button-link:hover {
       background-color: #c8e0fa;
       text-decoration: none;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-
     .news {
       margin-top: 2rem;
       background-color: #f4faff;
@@ -110,56 +96,42 @@
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
     }
-
     .news strong {
       display: block;
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: #1f77b4;
     }
-
     .news ul {
       list-style-type: disc;
       padding-left: 1.5rem;
       margin: 0;
     }
-
     .news li {
       margin-bottom: 0.4rem;
-      transition: background-color 0.3s ease;
     }
-
-    .news li:hover {
-      background-color: #e6f2ff;
-    }
-
     .main-content-right {
       flex: 3;
       min-width: 260px;
     }
-
     .main-content-right h1 {
       font-size: 2.2rem;
       margin-bottom: 0.8rem;
       color: #1f77b4;
       text-align: left;
     }
-
     .section {
       margin-top: 2rem;
       text-align: left;
     }
-
     .section h2 {
       font-size: 1.5rem;
       color: #1f77b4;
       margin-bottom: 0.6rem;
     }
-
     ul {
       padding-left: 1.2rem;
     }
-
     footer {
       background-color: #1f77b4;
       color: white;
@@ -169,29 +141,24 @@
       width: 100%;
       bottom: 0;
     }
-
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
         align-items: center;
       }
-
       .intro {
         flex-direction: column;
         align-items: center;
         text-align: center;
       }
-
       .main-content-right h1,
       .section h2 {
         text-align: center;
       }
-
       .button-link {
         margin-left: auto;
         margin-right: auto;
       }
-
       .news {
         text-align: center;
       }
@@ -199,18 +166,14 @@
   </style>
 </head>
 <body>
-  <!-- Top Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
     <a href="resources.html">Open Resources</a>
   </nav>
-
-  <!-- Main Content -->
   <div class="container">
     <div class="intro">
-      <!-- Left Panel -->
       <div class="left-panel">
         <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
         <div class="contact">
@@ -218,19 +181,10 @@
           <div>📍 1244, NE Road, WSU, Pullman, WA</div>
           <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
           <div>📞 +1-(509)-715-8554</div>
-
-          <!-- Button-style links -->
-          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link">
-            <i class="fab fa-github"></i> GitHub
-          </a><br />
-          <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link">
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a><br />
-          <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link">
-            <i class="fas fa-file-download"></i> Download CV
-          </a>
+          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link"><i class="fab fa-github"></i> GitHub</a><br />
+          <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link"><i class="fab fa-linkedin"></i> LinkedIn</a><br />
+          <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link"><i class="fas fa-file-download"></i> Download CV</a>
         </div>
-
         <div class="news">
           <strong>Recent Updates or News</strong>
           <ul>
@@ -240,26 +194,22 @@
           </ul>
         </div>
       </div>
-
-      <!-- Right Panel -->
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
-
-        <!-- Bio -->
         <p>
-          I completed my PhD in Statistical Science from Washington State University under
-          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>.
-          My research focuses on developing deep learning models for out-of-distribution (OOD) generalization,
-          designing Graph Neural Networks (GNNs) for node classification and embedding-based latent feature learning.
-          I also worked on change point detection in dynamic networks.
+          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
         </p>
         <p>
-          Prior to that, I earned a Master's in Computer Science with a focus on ML and AI from WSU, where I worked with
-          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>.
-          I also hold an MPhil in Applied Statistics, a Master's in Statistics, and a Bachelor's in Statistics.
+          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
+          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
         </p>
-
-        <!-- Research Interests -->
+        <p>
+          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
+        </p>
+        <p>
+          My research interests include: statistical learning, graph neural networks, interpretable AI, spatio-temporal and multivariate modeling, and applied work in domains such as seismology, bioinformatics, and social networks.
+        </p>
         <div class="section">
           <h2>Research Interests</h2>
           <ul>
@@ -269,8 +219,6 @@
             <li>Change point detection in dynamic networks</li>
           </ul>
         </div>
-
-        <!-- Current Projects -->
         <div class="section">
           <h2>Current Projects</h2>
           <ul>
@@ -282,8 +230,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
   <footer>
     © 2025 Mahedi Hasan | Designed for academic use
   </footer>
