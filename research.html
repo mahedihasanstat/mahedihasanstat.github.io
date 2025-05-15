@@ -4,11 +4,103 @@
   <meta charset="UTF-8" />
   <title>Research | Mahedi Hasan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      background-color: #fff;
+      color: #222;
+    }
+
+    nav {
+      background-color: #1f77b4;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      font-size: 1.1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #1f77b4;
+      margin-top: 0;
+    }
+
+    .section {
+      margin-top: 2.5rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      color: #1f77b4;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .section ul {
+      padding-left: 1.5rem;
+    }
+
+    .section li {
+      margin-bottom: 0.75rem;
+    }
+
+    footer {
+      background-color: #1f77b4;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      h1, .section h2 {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation Bar (same across pages) -->
+  <!-- Top Navigation (copied from index.html) -->
   <nav>
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
@@ -16,41 +108,49 @@
     <a href="resources.html">Open Resources</a>
   </nav>
 
-  <div class="container" style="padding-top: 80px;">
+  <!-- Main Content -->
+  <div class="container">
     <h1>Research</h1>
 
     <!-- Publications -->
-    <section class="section">
+    <div class="section">
       <h2>Publications</h2>
       <ul>
-        <li><strong>Hasan, M.</strong>, DeFord, D. (2025). <em>Title of your paper.</em> Journal Name. [<a href="#">PDF</a> | <a href="#">DOI</a>]</li>
-        <li><strong>Hasan, M.</strong>, Yan, Y. (2024). <em>Another title here.</em> Conference Name. [<a href="#">Link</a>]</li>
+        <li>
+          <strong>Hasan, M.</strong>, DeFord, D. (2025). <em>Generalizable Deep Learning Models for Seismic Event Discrimination.</em> Journal of Geophysical Research. [<a href="#">PDF</a> | <a href="#">DOI</a>]
+        </li>
+        <li>
+          <strong>Hasan, M.</strong>, Yan, Y. (2024). <em>Change Point Detection in Dynamic Networks Using Spectral Embeddings.</em> Proceedings of KDD. [<a href="#">Link</a>]
+        </li>
       </ul>
-    </section>
+    </div>
 
     <!-- Projects -->
-    <section class="section">
+    <div class="section">
       <h2>Projects</h2>
       <ul>
-        <li><strong>Seismic Discrimination Model:</strong> Deep learning models for EQ vs EXP classification, using synthetic and real datasets.</li>
-        <li><strong>Dynamic Network CPD:</strong> Change point detection in SBM and RDPG graphs using spectral methods.</li>
+        <li><strong>Seismic Event Discrimination:</strong> Building deep learning models for earthquake vs explosion classification using 3-component seismic waveform data.</li>
+        <li><strong>Dynamic Network CPD:</strong> Applying spectral methods to detect change points in evolving networks modeled by SBM and RDPG.</li>
+        <li><strong>Fair Aggregation of Social Networks:</strong> Studying fairness-aware network fusion for multiple student friendship networks.</li>
       </ul>
-    </section>
+    </div>
 
     <!-- Collaborations -->
-    <section class="section">
+    <div class="section">
       <h2>Collaborations</h2>
-      <p>
-        I have had the privilege to collaborate with:
-      </p>
       <ul>
-        <li><a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a> (WSU Mathematics)</li>
-        <li><a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a> (WSU Computer Science)</li>
-        <li>LANL Earth & Environmental Sciences team (Summer 2025)</li>
+        <li>
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a> – WSU Mathematics (Statistical network modeling)
+        </li>
+        <li>
+          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a> – WSU Computer Science (Deep learning and AI)
+        </li>
+        <li>Earth & Environmental Sciences Division – Los Alamos National Lab (Summer 2025)</li>
       </ul>
-    </section>
+    </div>
   </div>
 
+  <!-- Footer (copied from index.html) -->
   <footer>
     © 2025 Mahedi Hasan | Designed for academic use
   </footer>
