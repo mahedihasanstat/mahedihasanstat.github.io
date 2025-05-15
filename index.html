@@ -3,92 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Mahedi Hasan</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
             margin: 0;
             padding: 0;
-            color: #333;
-        }
-        header {
-            background: #007acc;
-            color: white;
-            padding: 2rem;
-            text-align: center;
+            color: #222;
         }
         nav {
-            background: #005fa3;
+            background-color: #f8f8f8;
+            padding: 1rem 2rem;
             text-align: center;
-            padding: 1rem 0;
+            border-bottom: 1px solid #ddd;
         }
         nav a {
-            margin: 0 1rem;
-            color: white;
+            margin: 0 1.2rem;
             text-decoration: none;
+            color: #333;
             font-weight: bold;
         }
         nav a:hover {
-            text-decoration: underline;
+            color: #007acc;
         }
-        section {
-            padding: 2rem;
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-top: 1rem;
+        .container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        h1, h2 {
-            margin-top: 0;
+        .photo {
+            flex: 1;
+            text-align: center;
+        }
+        .photo img {
+            width: 220px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        .bio {
+            flex: 2;
+            padding: 1rem 2rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin: 0 0 0.5rem;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            color: #555;
+        }
+        p {
+            line-height: 1.6;
         }
         footer {
             text-align: center;
-            padding: 1rem;
-            color: #777;
+            padding: 2rem 1rem;
             font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-        a {
-            color: #007acc;
-        }
-        a:hover {
-            text-decoration: underline;
+            color: #999;
+            border-top: 1px solid #eee;
+            margin-top: 4rem;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Mahedi Hasan</h1>
-        <p>Data Scientist | Researcher | Educator</p>
-    </header>
-
     <nav>
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="research.html">Research</a>
         <a href="teaching.html">Teaching</a>
         <a href="contact.html">Contact</a>
     </nav>
 
-    <section>
-        <h2>Welcome</h2>
-        <p>
-            I am a PhD candidate in Statistics with expertise in machine learning, deep learning, network science, and out-of-distribution generalization.
-            I enjoy solving real-world problems with data and building interpretable AI systems.
-        </p>
-    </section>
+    <div class="container">
+        <div class="photo">
+            <img src="assets/images/profile.jpg" alt="Mahedi Hasan">
+        </div>
+        <div class="bio">
+            <h1>Mahedi Hasan</h1>
+            <p>I am a PhD candidate in Statistics at Washington State University, with research interests in machine learning, deep learning, network science, and out-of-distribution generalization.</p>
+            <p>I specialize in developing interpretable and generalizable AI systems for real-world challenges, particularly in geophysical signal analysis and dynamic network modeling.</p>
+        </div>
+    </div>
 
-    <section>
-        <h2>Explore</h2>
-        <ul>
-            <li><a href="about.html">Learn more about me →</a></li>
-            <li><a href="research.html">Explore my research and projects →</a></li>
-            <li><a href="teaching.html">See my teaching history and materials →</a></li>
-            <li><a href="contact.html">Get in touch with me →</a></li>
-        </ul>
-    </section>
+    <div class="container">
+        <div class="bio">
+            <h2>Explore</h2>
+            <p>
+                → <a href="about.html">About Me</a><br>
+                → <a href="research.html">Research Projects</a><br>
+                → <a href="teaching.html">Teaching & Courses</a><br>
+                → <a href="contact.html">Contact & CV</a>
+            </p>
+        </div>
+    </div>
 
     <footer>
         © 2025 Mahedi Hasan. All rights reserved.
