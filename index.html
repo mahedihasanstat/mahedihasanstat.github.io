@@ -10,6 +10,8 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
+      padding-top: 70px;
+      padding-bottom: 60px;
       background-color: #fff;
       color: #222;
     }
@@ -21,7 +23,11 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
     }
 
     nav a {
@@ -77,6 +83,23 @@
       margin-right: 8px;
     }
 
+    .cv-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #1f77b4;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .cv-button:hover {
+      background-color: #155d8c;
+    }
+
     .news {
       margin-top: 1.5rem;
     }
@@ -91,24 +114,6 @@
       margin-bottom: 0.8rem;
       color: #1f77b4;
       text-align: left;
-    }
-
-    .cv-button {
-      display: inline-block;
-      margin: 0.8rem 0 1.2rem 0;
-      padding: 0.6rem 1.2rem;
-      background-color: #1f77b4;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .cv-button:hover {
-      background-color: #155d8c;
-      text-decoration: none;
     }
 
     .section {
@@ -131,7 +136,9 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      margin-top: 3rem;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
     }
 
     @media (max-width: 768px) {
@@ -162,10 +169,9 @@
   <!-- Top Navigation -->
   <nav>
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
-    <a href="contact.html">Contact</a>
+    <a href="resources.html">Open Resources</a>
   </nav>
 
   <!-- Main Content -->
@@ -185,14 +191,17 @@
             </a><br />
             <a href="https://www.linkedin.com/in/your-link" target="_blank">
               <i class="fab fa-linkedin icon"></i> LinkedIn
-            </a>
+            </a><br />
+            <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="cv-button">📄 Download CV</a>
           </div>
         </div>
 
         <div class="news">
           <strong>Recent Updates or News</strong>
           <ul>
-            <li><!-- Add your updates here --></li>
+            <li>Waiting to join postdoc on July 01, 2025</li>
+            <li>Will begin summer position at LANL from May 26, 2025</li>
+            <li>Will attend JSM conference this summer</li>
           </ul>
         </div>
       </div>
@@ -201,24 +210,32 @@
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
 
-        <!-- CV Button -->
-        <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="cv-button">📄 Download CV</a>
+        <!-- Bio -->
+        <p>
+          I completed my PhD in Statistical Science from Washington State University under
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>.
+          My research focuses on developing deep learning models for out-of-distribution (OOD) generalization,
+          designing Graph Neural Networks (GNNs) for node classification and embedding-based latent feature learning.
+          I also worked on change point detection in dynamic networks.
+        </p>
+        <p>
+          Prior to that, I earned a Master's in Computer Science with a focus on ML and AI from WSU, where I worked with
+          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>.
+          I also hold an MPhil in Applied Statistics, a Master's in Statistics, and a Bachelor's in Statistics.
+        </p>
 
-        <div class="section">
-          <h2>Short Bio</h2>
-          <p><!-- Add your full bio here later --></p>
-        </div>
-
+        <!-- Research Interests -->
         <div class="section">
           <h2>Research Interests</h2>
           <ul>
             <li>Seismic event classification (Earthquakes vs. Explosions)</li>
-            <li>Domain adaptation and OOD generalization</li>
-            <li>Graph neural networks and network modeling</li>
-            <li>Statistical change detection in dynamic networks</li>
+            <li>Out-of-distribution (OOD) generalization in deep learning</li>
+            <li>Graph neural networks and latent representation learning</li>
+            <li>Change point detection in dynamic networks</li>
           </ul>
         </div>
 
+        <!-- Current Projects -->
         <div class="section">
           <h2>Current Projects</h2>
           <ul>
