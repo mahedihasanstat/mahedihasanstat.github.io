@@ -1,1 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open Resources | Mahedi Hasan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    nav {
+      background-color: #1f77b4;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      font-size: 1.1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #1f77b4;
+      margin-top: 0;
+    }
+
+    .section {
+      margin-top: 2.5rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      color: #1f77b4;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-left: 5px solid #1f77b4;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #1f77b4;
+    }
+
+    .card p {
+      margin: 0.5rem 0 0 0;
+      font-size: 0.95rem;
+    }
+
+    .card a {
+      color: #1f77b4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1f77b4;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      h1, .section h2 {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="resources.html">Open Resources</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Open Resources</h1>
+
+    <!-- Educational Websites -->
+    <div class="section">
+      <h2>Educational Websites</h2>
+
+      <div class="card">
+        <h3><a href="https://stats.idre.ucla.edu" target="_blank">UCLA Institute for Digital Research & Education (IDRE)</a></h3>
+        <p>Comprehensive tutorials on statistical methods, software (R, Stata, SPSS, SAS), and data analysis techniques.</p>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://seeing-theory.brown.edu/" target="_blank">Seeing Theory</a></h3>
+        <p>Visual introduction to probability and statistics developed by Brown University students.</p>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://bookdown.org/" target="_blank">Bookdown</a></h3>
+        <p>Open-source platform to publish books and tutorials using R and Markdown. Great for learning statistical modeling.</p>
+      </div>
+    </div>
+
+    <!-- Career Resources -->
+    <div class="section">
+      <h2>Career Development</h2>
+
+      <div class="card">
+        <h3><a href="https://www.coursera.org/career-academy" target="_blank">Coursera Career Academy</a></h3>
+        <p>Career paths in data science, machine learning, AI, and software engineering curated by top companies.</p>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://chroniclevitae.com/job_search/new" target="_blank">Chronicle Vitae – Academic Jobs</a></h3>
+        <p>Academic job board and career resources for graduate students, postdocs, and early-career researchers.</p>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://careercenter.wsu.edu/" target="_blank">WSU Career Center</a></h3>
+        <p>Career services and job opportunities available to WSU students and alumni.</p>
+      </div>
+    </div>
+
+    <!-- Workshops & Seminars -->
+    <div class="section">
+      <h2>Workshops & Seminars</h2>
+
+      <div class="card">
+        <h3>Data Literacy Workshop – WA Tribal School (Volunteer)</h3>
+        <p>Interactive session with Native American students introducing core concepts of data, graphs, and storytelling with numbers.</p>
+      </div>
+
+      <div class="card">
+        <h3>Summer Seminar on Out-of-Distribution Generalization – Los Alamos National Lab</h3>
+        <p>Conducted presentations and collaborative coding exercises on deep learning generalization strategies using seismic waveform data.</p>
+      </div>
+
+      <div class="card">
+        <h3>Student Workshop – Statistical Modeling in R</h3>
+        <p>Hands-on workshop for undergraduate students to apply linear regression, ANOVA, and mixed models in R.</p>
+      </div>
+    </div>
+
+    <!-- Additional Learning Materials -->
+    <div class="section">
+      <h2>Open Learning Materials</h2>
+
+      <div class="card">
+        <h3><a href="https://openintro.org" target="_blank">OpenIntro Statistics</a></h3>
+        <p>Free, open-source statistics textbooks and labs with R and Python support.</p>
+      </div>
+
+      <div class="card">
+        <h3><a href="https://github.com/mahedihasanstat" target="_blank">GitHub – Mahedi Hasan</a></h3>
+        <p>My open-source projects, teaching repositories, and reproducible research code.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Mahedi Hasan | Designed for academic use
+  </footer>
+
+</body>
+</html>
 
