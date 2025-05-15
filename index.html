@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <title>Mahedi Hasan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Font Awesome for LinkedIn & GitHub icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding-top: 70px;
-      padding-bottom: 60px;
+      padding-bottom: 70px;
       background-color: #fff;
       color: #222;
     }
@@ -86,14 +85,18 @@
     .cv-button {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1rem;
       background-color: #1f77b4;
       color: white;
       font-weight: bold;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 1rem;
       transition: background-color 0.3s ease;
+    }
+
+    .cv-button i {
+      margin-right: 8px;
     }
 
     .cv-button:hover {
@@ -101,7 +104,33 @@
     }
 
     .news {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
+      background-color: #f4faff;
+      padding: 1rem;
+      border-left: 5px solid #1f77b4;
+      border-radius: 6px;
+    }
+
+    .news strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #1f77b4;
+    }
+
+    .news ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+
+    .news li {
+      margin-bottom: 0.4rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .news li:hover {
+      background-color: #e6f2ff;
     }
 
     .main-content-right {
@@ -162,6 +191,10 @@
         margin-left: auto;
         margin-right: auto;
       }
+
+      .news {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -192,7 +225,9 @@
             <a href="https://www.linkedin.com/in/your-link" target="_blank">
               <i class="fab fa-linkedin icon"></i> LinkedIn
             </a><br />
-            <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="cv-button">📄 Download CV</a>
+            <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="cv-button">
+              <i class="fas fa-file-download"></i> Download CV
+            </a>
           </div>
         </div>
 
