@@ -12,7 +12,7 @@
             color: #222;
         }
         nav {
-            background-color: #007acc;
+            background-color: #d62728; /* Updated color from image */
             color: white;
             padding: 1rem 2rem;
             display: flex;
@@ -35,7 +35,7 @@
         .intro {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-start;
             gap: 2rem;
         }
         .intro img {
@@ -43,17 +43,29 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.15);
         }
+        .contact {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .contact a {
+            text-decoration: none;
+            color: #007acc;
+        }
+        .contact-icons {
+            margin-top: 0.5rem;
+        }
+        .contact-icons img {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
         .intro-text {
             flex: 2;
         }
         .intro-text h1 {
             margin-bottom: 0.5rem;
             font-size: 2.2rem;
-        }
-        .contact {
-            margin-top: 1.2rem;
-            font-size: 0.95rem;
-            color: #444;
         }
         .section {
             margin-top: 3rem;
@@ -63,7 +75,7 @@
             color: #007acc;
         }
         footer {
-            background-color: #007acc;
+            background-color: #d62728; /* Updated color from image */
             color: white;
             text-align: center;
             padding: 1rem;
@@ -87,18 +99,28 @@
         <div class="intro">
             <div>
                 <img src="assets/images/profile.jpg" alt="Mahedi Hasan">
-            </div>
-            <div class="intro-text">
-                <h1>Mahedi Hasan</h1>
-                <p>I am a PhD candidate in Statistics at Washington State University, with research interests in machine learning, deep learning, network science, and out-of-distribution generalization.</p>
-                <p>I specialize in developing interpretable and generalizable AI systems for real-world challenges, particularly in geophysical signal analysis and dynamic network modeling.</p>
-
                 <div class="contact">
-                    <strong>Contact:</strong><br>
+                    <strong>Contact Information</strong><br>
                     Email: <a href="mailto:mahedi@example.com">mahedi@example.com</a><br>
                     Phone: +1-234-567-8901<br>
-                    GitHub: <a href="https://github.com/mahedihasanstat" target="_blank">mahedihasanstat</a><br>
-                    LinkedIn: <a href="https://www.linkedin.com/in/your-link" target="_blank">your-link</a>
+                    <div class="contact-icons">
+                        <a href="https://github.com/mahedihasanstat" target="_blank">
+                            <img src="assets/icons/github.png" alt="GitHub"> GitHub
+                        </a><br>
+                        <a href="https://www.linkedin.com/in/your-link" target="_blank">
+                            <img src="assets/icons/linkedin.png" alt="LinkedIn"> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intro-text">
+                <h1>Mahedi Hasan</h1>
+                <p>I am a PhD candidate in Statistics at Washington State University, focusing on developing interpretable and generalizable AI systems for real-world applications.</p>
+                
+                <div class="section">
+                    <h2>Short Bio</h2>
+                    <p><!-- You can add your detailed bio here. Leave this open for later. --></p>
                 </div>
             </div>
         </div>
@@ -106,24 +128,21 @@
         <!-- Research Interests -->
         <div class="section">
             <h2>Research Interests</h2>
-            <p>
-                My research focuses on developing robust and interpretable deep learning systems for classification, prediction, and change detection in spatiotemporal and network data. I am particularly interested in:
-                <ul>
-                    <li>Seismic event classification (Earthquakes vs. Explosions)</li>
-                    <li>Domain adaptation and generalization performance</li>
-                    <li>Graph neural networks and network aggregation</li>
-                    <li>Statistical modeling for change point detection in networks</li>
-                </ul>
-            </p>
+            <ul>
+                <li>Seismic event classification (Earthquakes vs. Explosions)</li>
+                <li>Domain adaptation and OOD generalization</li>
+                <li>Graph neural networks and network modeling</li>
+                <li>Statistical change detection in dynamic networks</li>
+            </ul>
         </div>
 
         <!-- Current Projects -->
         <div class="section">
             <h2>Current Projects</h2>
             <ul>
-                <li><strong>Seismic Event Discrimination:</strong> Developing deep learning models trained on synthetic waveforms and tested on real seismic data</li>
-                <li><strong>Change Point Detection in Networks:</strong> Using spectral embeddings and machine learning to detect temporal structural changes</li>
-                <li><strong>Fair Aggregation Models:</strong> Investigating fairness-aware strategies for combining multiple social networks</li>
+                <li><strong>Seismic Event Discrimination:</strong> Deep learning models trained on synthetic waveforms, tested on real data</li>
+                <li><strong>Change Point Detection:</strong> Spectral embeddings + machine learning to identify network changes</li>
+                <li><strong>Fair Network Aggregation:</strong> Strategies for fair combination of social subnetworks</li>
             </ul>
         </div>
     </div>
