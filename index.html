@@ -28,6 +28,7 @@
       top: 0;
       width: 100%;
       z-index: 1000;
+      font-size: 1.1rem;
     }
 
     nav a {
@@ -71,41 +72,35 @@
     }
 
     .contact a {
-      color: #1f77b4;
       text-decoration: none;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
     }
 
     .contact .icon {
       margin-right: 8px;
     }
 
-    .cv-button {
+    .button-link {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background-color: #005a9c;
-      color: #ffffff;
+      margin-top: 0.6rem;
+      padding: 0.5rem 1rem;
+      background-color: #e0efff;
+      color: #1f77b4;
       font-weight: 600;
       border-radius: 6px;
+      font-size: 0.95rem;
       text-decoration: none;
-      font-size: 1rem;
       transition: background-color 0.3s ease, box-shadow 0.2s ease;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .cv-button i {
-      margin-right: 8px;
+    .button-link i {
+      margin-right: 6px;
     }
 
-    .cv-button:hover {
-      background-color: #004377;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    .button-link:hover {
+      background-color: #c8e0fa;
       text-decoration: none;
-      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     .news {
@@ -192,7 +187,7 @@
         text-align: center;
       }
 
-      .cv-button {
+      .button-link {
         margin-left: auto;
         margin-right: auto;
       }
@@ -223,17 +218,17 @@
           <div>📍 1244, NE Road, WSU, Pullman, WA</div>
           <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
           <div>📞 +1-(509)-715-8554</div>
-          <div style="margin-top: 0.5rem;">
-            <a href="https://github.com/mahedihasanstat" target="_blank">
-              <i class="fab fa-github icon"></i> GitHub
-            </a><br />
-            <a href="https://www.linkedin.com/in/your-link" target="_blank">
-              <i class="fab fa-linkedin icon"></i> LinkedIn
-            </a><br />
-            <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="cv-button">
-              <i class="fas fa-file-download"></i> Download CV
-            </a>
-          </div>
+
+          <!-- Button-style links -->
+          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link">
+            <i class="fab fa-github"></i> GitHub
+          </a><br />
+          <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a><br />
+          <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link">
+            <i class="fas fa-file-download"></i> Download CV
+          </a>
         </div>
 
         <div class="news">
