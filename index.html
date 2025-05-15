@@ -15,7 +15,7 @@
     }
 
     nav {
-      background-color: #1f77b4; /* Blue-gray from the figure */
+      background-color: #1f77b4;
       color: white;
       padding: 1rem 2rem;
       display: flex;
@@ -81,20 +81,38 @@
       margin-top: 1.5rem;
     }
 
-    .intro-text {
+    .main-content-right {
       flex: 3;
       min-width: 260px;
     }
 
-    .intro-text h1 {
+    .main-content-right h1 {
       font-size: 2.2rem;
       margin-bottom: 0.8rem;
       color: #1f77b4;
       text-align: left;
     }
 
+    .cv-button {
+      display: inline-block;
+      margin: 0.8rem 0 1.2rem 0;
+      padding: 0.6rem 1.2rem;
+      background-color: #1f77b4;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .cv-button:hover {
+      background-color: #155d8c;
+      text-decoration: none;
+    }
+
     .section {
-      margin-top: 3rem;
+      margin-top: 2rem;
       text-align: left;
     }
 
@@ -116,7 +134,6 @@
       margin-top: 3rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -129,12 +146,14 @@
         text-align: center;
       }
 
-      .intro-text h1 {
+      .main-content-right h1,
+      .section h2 {
         text-align: center;
       }
 
-      .section h2 {
-        text-align: center;
+      .cv-button {
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   </style>
@@ -152,10 +171,9 @@
   <!-- Main Content -->
   <div class="container">
     <div class="intro">
-      <!-- Left Panel with Photo + Contact -->
+      <!-- Left Panel -->
       <div class="left-panel">
         <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
-
         <div class="contact">
           <strong>Contact Information</strong><br />
           <div>📍 1244, NE Road, WSU, Pullman, WA</div>
@@ -179,50 +197,37 @@
         </div>
       </div>
 
-      <!-- Right Panel with Name and Bio -->
-      <div class="intro-text">
+      <!-- Right Panel -->
+      <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
-        <p>
-          I am a PhD candidate in Statistics at Washington State University,
-          focusing on developing interpretable and generalizable AI systems for
-          real-world applications.
-        </p>
+
+        <!-- CV Button -->
+        <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="cv-button">📄 Download CV</a>
 
         <div class="section">
           <h2>Short Bio</h2>
           <p><!-- Add your full bio here later --></p>
         </div>
+
+        <div class="section">
+          <h2>Research Interests</h2>
+          <ul>
+            <li>Seismic event classification (Earthquakes vs. Explosions)</li>
+            <li>Domain adaptation and OOD generalization</li>
+            <li>Graph neural networks and network modeling</li>
+            <li>Statistical change detection in dynamic networks</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Current Projects</h2>
+          <ul>
+            <li><strong>Seismic Event Discrimination:</strong> Deep learning models trained on synthetic waveforms, tested on real data</li>
+            <li><strong>Change Point Detection:</strong> Spectral embeddings + machine learning to identify network changes</li>
+            <li><strong>Fair Network Aggregation:</strong> Strategies for fair combination of social subnetworks</li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <!-- Research Interests -->
-    <div class="section">
-      <h2>Research Interests</h2>
-      <ul>
-        <li>Seismic event classification (Earthquakes vs. Explosions)</li>
-        <li>Domain adaptation and OOD generalization</li>
-        <li>Graph neural networks and network modeling</li>
-        <li>Statistical change detection in dynamic networks</li>
-      </ul>
-    </div>
-
-    <!-- Current Projects -->
-    <div class="section">
-      <h2>Current Projects</h2>
-      <ul>
-        <li>
-          <strong>Seismic Event Discrimination:</strong> Deep learning models
-          trained on synthetic waveforms, tested on real data
-        </li>
-        <li>
-          <strong>Change Point Detection:</strong> Spectral embeddings +
-          machine learning to identify network changes
-        </li>
-        <li>
-          <strong>Fair Network Aggregation:</strong> Strategies for fair
-          combination of social subnetworks
-        </li>
-      </ul>
     </div>
   </div>
 
