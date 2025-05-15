@@ -1,156 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mahedi Hasan</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: #fff;
-            color: #222;
-        }
-        nav {
-            background-color: #d62728; /* Updated color from image */
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        .intro {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 2rem;
-        }
-        .intro img {
-            width: 220px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-        }
-        .contact {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #333;
-        }
-        .contact a {
-            text-decoration: none;
-            color: #007acc;
-        }
-        .contact-icons {
-            margin-top: 0.5rem;
-        }
-        .contact-icons img {
-            width: 20px;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-        .intro-text {
-            flex: 2;
-        }
-        .intro-text h1 {
-            margin-bottom: 0.5rem;
-            font-size: 2.2rem;
-        }
-        .section {
-            margin-top: 3rem;
-        }
-        .section h2 {
-            font-size: 1.5rem;
-            color: #007acc;
-        }
-        footer {
-            background-color: #d62728; /* Updated color from image */
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 3rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Mahedi Hasan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Font Awesome for LinkedIn & GitHub icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #222;
+    }
+
+    nav {
+      background-color: #1f77b4; /* Blue-gray from the figure */
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .intro {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .intro img {
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .left-panel {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .contact {
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .contact a {
+      color: #1f77b4;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .contact .icon {
+      margin-right: 8px;
+    }
+
+    .news {
+      margin-top: 1.5rem;
+    }
+
+    .intro-text {
+      flex: 3;
+      min-width: 260px;
+    }
+
+    .intro-text h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: #1f77b4;
+      text-align: left;
+    }
+
+    .section {
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      color: #1f77b4;
+      margin-bottom: 0.6rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    footer {
+      background-color: #1f77b4;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .intro {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .intro-text h1 {
+        text-align: center;
+      }
+
+      .section h2 {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Top Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-    <!-- Top Navigation -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="research.html">Research</a>
-        <a href="teaching.html">Teaching</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+  <!-- Main Content -->
+  <div class="container">
+    <div class="intro">
+      <!-- Left Panel with Photo + Contact -->
+      <div class="left-panel">
+        <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="intro">
-            <div>
-                <img src="assets/images/profile.jpg" alt="Mahedi Hasan">
-                <div class="contact">
-                    <strong>Contact Information</strong><br>
-                    Email: <a href="mailto:mahedi@example.com">mahedi@example.com</a><br>
-                    Phone: +1-234-567-8901<br>
-                    <div class="contact-icons">
-                        <a href="https://github.com/mahedihasanstat" target="_blank">
-                            <img src="assets/icons/github.png" alt="GitHub"> GitHub
-                        </a><br>
-                        <a href="https://www.linkedin.com/in/your-link" target="_blank">
-                            <img src="assets/icons/linkedin.png" alt="LinkedIn"> LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="intro-text">
-                <h1>Mahedi Hasan</h1>
-                <p>I am a PhD candidate in Statistics at Washington State University, focusing on developing interpretable and generalizable AI systems for real-world applications.</p>
-                
-                <div class="section">
-                    <h2>Short Bio</h2>
-                    <p><!-- You can add your detailed bio here. Leave this open for later. --></p>
-                </div>
-            </div>
+        <div class="contact">
+          <strong>Contact Information</strong><br />
+          <div>📍 1244, NE Road, WSU, Pullman, WA</div>
+          <div>📧 <a href="mailto:mahedi@example.com">mahedi@example.com</a></div>
+          <div>📞 +1-234-567-8901</div>
+          <div style="margin-top: 0.5rem;">
+            <a href="https://github.com/mahedihasanstat" target="_blank">
+              <i class="fab fa-github icon"></i> GitHub
+            </a><br />
+            <a href="https://www.linkedin.com/in/your-link" target="_blank">
+              <i class="fab fa-linkedin icon"></i> LinkedIn
+            </a>
+          </div>
         </div>
 
-        <!-- Research Interests -->
+        <div class="news">
+          <strong>Recent Updates or News</strong>
+          <ul>
+            <li><!-- Add your updates here --></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Panel with Name and Bio -->
+      <div class="intro-text">
+        <h1>Mahedi Hasan</h1>
+        <p>
+          I am a PhD candidate in Statistics at Washington State University,
+          focusing on developing interpretable and generalizable AI systems for
+          real-world applications.
+        </p>
+
         <div class="section">
-            <h2>Research Interests</h2>
-            <ul>
-                <li>Seismic event classification (Earthquakes vs. Explosions)</li>
-                <li>Domain adaptation and OOD generalization</li>
-                <li>Graph neural networks and network modeling</li>
-                <li>Statistical change detection in dynamic networks</li>
-            </ul>
+          <h2>Short Bio</h2>
+          <p><!-- Add your full bio here later --></p>
         </div>
-
-        <!-- Current Projects -->
-        <div class="section">
-            <h2>Current Projects</h2>
-            <ul>
-                <li><strong>Seismic Event Discrimination:</strong> Deep learning models trained on synthetic waveforms, tested on real data</li>
-                <li><strong>Change Point Detection:</strong> Spectral embeddings + machine learning to identify network changes</li>
-                <li><strong>Fair Network Aggregation:</strong> Strategies for fair combination of social subnetworks</li>
-            </ul>
-        </div>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        © 2025 Mahedi Hasan | Designed for academic use
-    </footer>
+    <!-- Research Interests -->
+    <div class="section">
+      <h2>Research Interests</h2>
+      <ul>
+        <li>Seismic event classification (Earthquakes vs. Explosions)</li>
+        <li>Domain adaptation and OOD generalization</li>
+        <li>Graph neural networks and network modeling</li>
+        <li>Statistical change detection in dynamic networks</li>
+      </ul>
+    </div>
 
+    <!-- Current Projects -->
+    <div class="section">
+      <h2>Current Projects</h2>
+      <ul>
+        <li>
+          <strong>Seismic Event Discrimination:</strong> Deep learning models
+          trained on synthetic waveforms, tested on real data
+        </li>
+        <li>
+          <strong>Change Point Detection:</strong> Spectral embeddings +
+          machine learning to identify network changes
+        </li>
+        <li>
+          <strong>Fair Network Aggregation:</strong> Strategies for fair
+          combination of social subnetworks
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Mahedi Hasan | Designed for academic use
+  </footer>
 </body>
 </html>
