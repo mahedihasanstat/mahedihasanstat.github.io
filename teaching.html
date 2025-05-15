@@ -1,7 +1,172 @@
-<nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teaching | Mahedi Hasan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      background-color: #fff;
+      color: #222;
+    }
+
+    nav {
+      background-color: #1f77b4;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      font-size: 1.1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #1f77b4;
+      margin-top: 0;
+    }
+
+    .section {
+      margin-top: 2.5rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      color: #1f77b4;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .course {
+      margin-bottom: 2rem;
+    }
+
+    .course-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .course-meta {
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 0.4rem;
+    }
+
+    .course-links a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-top: 0.4rem;
+      color: #1f77b4;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .course-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1f77b4;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      h1, .section h2 {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
-    <a href="contact.html">Contact</a>
-</nav>
+    <a href="resources.html">Open Resources</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Teaching</h1>
+
+    <div class="section">
+      <h2>Courses Taught & Teaching</h2>
+
+      <!-- Example Course 1 -->
+      <div class="course">
+        <div class="course-title">STAT 512: Statistical Learning</div>
+        <div class="course-meta">Fall 2024 – Washington State University</div>
+        <div class="course-links">
+          <a href="#">Syllabus</a>
+          <a href="#">Lecture Notes</a>
+          <a href="#">Homework</a>
+          <a href="#">Exams</a>
+        </div>
+      </div>
+
+      <!-- Example Course 2 -->
+      <div class="course">
+        <div class="course-title">CS 580: Machine Learning</div>
+        <div class="course-meta">Spring 2024 – WSU (Graduate TA)</div>
+        <div class="course-links">
+          <a href="#">Syllabus</a>
+          <a href="#">Lecture Slides</a>
+          <a href="#">Assignments</a>
+        </div>
+      </div>
+
+      <!-- Add more courses here -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Mahedi Hasan | Designed for academic use
+  </footer>
+
+</body>
+</html>
