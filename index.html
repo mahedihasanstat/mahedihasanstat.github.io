@@ -59,6 +59,7 @@
     .contact {
       margin-top: 1.2rem;
       font-size: 0.9rem;
+      color: #333;
     }
     .contact a {
       text-decoration: none;
@@ -73,20 +74,20 @@
       border-radius: 6px;
       font-size: 0.95rem;
       text-decoration: none;
-    }
-    .button-link i {
-      margin-right: 6px;
+      transition: background-color 0.3s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
     .button-link:hover {
       background-color: #c8e0fa;
     }
+
     .news {
       margin-top: 2rem;
       background-color: #f4faff;
       padding: 1rem;
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
-      max-height: 160px;
+      max-height: 150px;
       overflow-y: auto;
     }
     .news strong {
@@ -95,6 +96,15 @@
       margin-bottom: 0.5rem;
       color: #1f77b4;
     }
+    .news ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+    .news li {
+      margin-bottom: 0.4rem;
+    }
+
     .main-content-right {
       flex: 3;
       min-width: 260px;
@@ -104,57 +114,20 @@
       margin-bottom: 0.8rem;
       color: #1f77b4;
     }
+
     .section {
       margin-top: 2rem;
+      text-align: left;
     }
+
     .section h2 {
       font-size: 1.5rem;
       color: #1f77b4;
       margin-bottom: 0.6rem;
     }
+
     ul {
       padding-left: 1.2rem;
-    }
-
-    .project-images {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-    }
-
-    .project-images .image-block {
-      flex: 1;
-      min-width: 30%;
-      text-align: center;
-      animation: slideInRight 1.5s ease forwards;
-      opacity: 0;
-    }
-
-    .project-images .image-block img {
-      width: 100%;
-      max-height: 180px;
-      object-fit: contain;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .project-images .image-block div {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #444;
-    }
-
-    @keyframes slideInRight {
-      from {
-        transform: translateX(80%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
     }
 
     footer {
@@ -165,6 +138,62 @@
       position: fixed;
       width: 100%;
       bottom: 0;
+    }
+
+    /* === Image Slider Section === */
+    #slider-container {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 6px;
+      position: relative;
+      background-color: #f9f9f9;
+      margin-top: 1.5rem;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slideImages 12s infinite;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInSlide 4s ease-in-out;
+    }
+
+    .slide img {
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .caption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #444;
+      text-align: center;
+    }
+
+    @keyframes slideImages {
+      0%   { transform: translateX(0%); }
+      33%  { transform: translateX(-100%); }
+      66%  { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    @keyframes fadeInSlide {
+      0%   { opacity: 0; transform: translateX(80px); }
+      10%  { opacity: 1; transform: translateX(0); }
+      90%  { opacity: 1; transform: translateX(0); }
+      100% { opacity: 0; transform: translateX(-80px); }
     }
 
     @media (max-width: 768px) {
@@ -181,16 +210,10 @@
       .section h2 {
         text-align: center;
       }
-      .button-link {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .news {
-        text-align: center;
-      }
     }
   </style>
 </head>
+
 <body>
   <nav>
     <a href="index.html">Home</a>
@@ -208,29 +231,39 @@
         </div>
         <div class="contact">
           <strong>Contact Information</strong><br />
-          📍 1244, NE Road, WSU, Pullman, WA<br />
-          📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a><br />
-          📞 +1-(509)-715-8554
-          <br /><a href="https://github.com/mahedihasanstat" target="_blank" class="button-link"><i class="fab fa-github"></i> GitHub</a><br />
+          <div>📍 1244, NE Road, WSU, Pullman, WA</div>
+          <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
+          <div>📞 +1-(509)-715-8554</div>
+          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link"><i class="fab fa-github"></i> GitHub</a><br />
           <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link"><i class="fab fa-linkedin"></i> LinkedIn</a><br />
           <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link"><i class="fas fa-file-download"></i> Download CV</a>
         </div>
+
         <div class="news">
           <strong>Recent Updates or News</strong>
           <ul>
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
-            <li>Submitted paper on spectral embedding</li>
-            <li>Working on GNN for seismology</li>
+            <li>Working on GNN model refinement for seismic event data</li>
+            <li>Drafting manuscript on fairness in network aggregation</li>
           </ul>
         </div>
       </div>
+
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
-        <p>I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.</p>
-        <p>I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.</p>
-        <p>My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.</p>
+        <p>
+          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
+        </p>
+        <p>
+          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
+          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
+        </p>
+        <p>
+          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
+        </p>
 
         <div class="section">
           <h2>Research Interests</h2>
@@ -245,18 +278,20 @@
 
         <div class="section">
           <h2>Current Research Projects</h2>
-          <div class="project-images">
-            <div class="image-block">
-              <img src="assets/images/lanl1.png" alt="Seismic Event" />
-              <div>Seismic Event Generalization</div>
-            </div>
-            <div class="image-block">
-              <img src="assets/images/cpd1.png" alt="Spectral Embedding" />
-              <div>Spectral Embedding</div>
-            </div>
-            <div class="image-block">
-              <img src="assets/images/gcn.jpg" alt="Graph Neural Networks" />
-              <div>Graph Neural Networks</div>
+          <div id="slider-container">
+            <div class="slider-wrapper">
+              <div class="slide">
+                <img src="assets/images/lanl1.png" alt="Seismic Event" />
+                <div class="caption">Seismic Event Generalization</div>
+              </div>
+              <div class="slide">
+                <img src="assets/images/cpd1.png" alt="Spectral Embedding" />
+                <div class="caption">Spectral Embedding</div>
+              </div>
+              <div class="slide">
+                <img src="assets/images/gcn.jpg" alt="Graph Neural Networks" />
+                <div class="caption">Graph Neural Networks</div>
+              </div>
             </div>
           </div>
         </div>
