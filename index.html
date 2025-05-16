@@ -80,16 +80,14 @@
     .button-link:hover {
       background-color: #c8e0fa;
       text-decoration: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-
     .news {
       margin-top: 2rem;
       background-color: #f4faff;
       padding: 1rem;
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
-      height: 140px;
+      height: 150px;
       overflow: hidden;
       position: relative;
     }
@@ -98,21 +96,20 @@
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: #1f77b4;
+      background-color: #f4faff;
+      z-index: 2;
+      position: relative;
     }
     .news ul {
       list-style-type: disc;
       padding-left: 1.5rem;
       margin: 0;
-      animation: scrollNews 12s linear infinite;
+      animation: scroll-up 10s linear infinite;
     }
-    .news li {
-      margin-bottom: 0.4rem;
-    }
-    @keyframes scrollNews {
+    @keyframes scroll-up {
       0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
+      100% { transform: translateY(-100%); }
     }
-
     .main-content-right {
       flex: 3;
       min-width: 260px;
@@ -121,11 +118,9 @@
       font-size: 2.2rem;
       margin-bottom: 0.8rem;
       color: #1f77b4;
-      text-align: left;
     }
     .section {
       margin-top: 2rem;
-      text-align: left;
     }
     .section h2 {
       font-size: 1.5rem;
@@ -135,23 +130,6 @@
     ul {
       padding-left: 1.2rem;
     }
-
-    .carousel {
-      margin-top: 1rem;
-      width: 100%;
-      height: auto;
-      overflow: hidden;
-      border-radius: 8px;
-      position: relative;
-      text-align: center;
-    }
-    .carousel img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
     footer {
       background-color: #1f77b4;
       color: white;
@@ -161,6 +139,20 @@
       width: 100%;
       bottom: 0;
     }
+    .carousel img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: block;
+      margin: auto;
+    }
+    .carousel-caption {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -169,17 +161,6 @@
       .intro {
         flex-direction: column;
         align-items: center;
-        text-align: center;
-      }
-      .main-content-right h1,
-      .section h2 {
-        text-align: center;
-      }
-      .button-link {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .news {
         text-align: center;
       }
     }
@@ -197,7 +178,9 @@
     <div class="intro">
       <div class="left-panel">
         <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
-        <div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM</div>
+        <div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">
+          Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM
+        </div>
         <div class="contact">
           <strong>Contact Information</strong><br />
           <div>📍 1244, NE Road, WSU, Pullman, WA</div>
@@ -213,15 +196,25 @@
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
-            <li>Presented poster at SIAM 2025</li>
-            <li>Submitted paper on CPD methods</li>
-            <li>Joined Graph Learning Workshop Series</li>
+            <li>Finalizing dissertation edits</li>
+            <li>Preparing workshop on interpretability</li>
           </ul>
         </div>
       </div>
+
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
-        <p>I am a researcher working at the intersection of statistics and machine learning...</p>
+        <p>
+          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
+        </p>
+        <p>
+          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
+          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
+        </p>
+        <p>
+          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
+        </p>
 
         <div class="section">
           <h2>Research Interests</h2>
@@ -237,8 +230,8 @@
         <div class="section">
           <h2>Current Research Projects</h2>
           <div class="carousel">
-            <img id="carousel-image" src="assets/images/lanl1.png" alt="Project Snapshot" />
-            <div id="carousel-caption" style="margin-top: 0.5rem; font-size: 0.9rem; color: #444;">Seismic Event Generalization</div>
+            <img id="carouselImage" src="assets/images/lanl1.png" alt="Current Project Image" />
+            <div class="carousel-caption" id="carouselCaption">Seismic Event Generalization</div>
           </div>
         </div>
       </div>
@@ -255,14 +248,12 @@
       { src: "assets/images/cpd1.png", caption: "Spectral Embedding" },
       { src: "assets/images/gcn.jpg", caption: "Graph Neural Networks" }
     ];
-    let currentIndex = 0;
-    const imgEl = document.getElementById("carousel-image");
-    const captionEl = document.getElementById("carousel-caption");
+    let index = 0;
 
     setInterval(() => {
-      currentIndex = (currentIndex + 1) % images.length;
-      imgEl.src = images[currentIndex].src;
-      captionEl.innerText = images[currentIndex].caption;
+      index = (index + 1) % images.length;
+      document.getElementById('carouselImage').src = images[index].src;
+      document.getElementById('carouselCaption').innerText = images[index].caption;
     }, 4000);
   </script>
 </body>
