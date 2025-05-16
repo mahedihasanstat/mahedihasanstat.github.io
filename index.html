@@ -94,10 +94,6 @@
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: #1f77b4;
-      position: sticky;
-      top: 0;
-      background: #f4faff;
-      padding: 0.2rem 0;
     }
     .main-content-right {
       flex: 3;
@@ -116,42 +112,51 @@
       color: #1f77b4;
       margin-bottom: 0.6rem;
     }
-    .slider-container {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      height: 220px;
-      margin-top: 1rem;
+    ul {
+      padding-left: 1.2rem;
     }
-    .slider {
+
+    .project-images {
       display: flex;
-      width: 300%;
-      animation: slideShow 12s infinite;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      margin-top: 1.5rem;
     }
-    .slide {
-      flex: 0 0 100%;
+
+    .project-images .image-block {
+      flex: 1;
+      min-width: 30%;
       text-align: center;
+      animation: slideInRight 1.5s ease forwards;
+      opacity: 0;
     }
-    .slide img {
+
+    .project-images .image-block img {
       width: 100%;
-      max-height: 200px;
-      object-fit: cover;
+      max-height: 180px;
+      object-fit: contain;
       border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .slide-caption {
+
+    .project-images .image-block div {
+      margin-top: 0.5rem;
       font-size: 0.9rem;
       color: #444;
-      margin-top: 0.3rem;
     }
-    @keyframes slideShow {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(0%); }
-      40% { transform: translateX(-100%); }
-      73% { transform: translateX(-100%); }
-      80% { transform: translateX(-200%); }
-      100% { transform: translateX(-200%); }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(80%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
+
     footer {
       background-color: #1f77b4;
       color: white;
@@ -160,6 +165,29 @@
       position: fixed;
       width: 100%;
       bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      .intro {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .main-content-right h1,
+      .section h2 {
+        text-align: center;
+      }
+      .button-link {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .news {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -193,8 +221,8 @@
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
-            <li>Submitted paper on spectral embedding in dynamic networks</li>
-            <li>Preparing data for new GNN-based classification study</li>
+            <li>Submitted paper on spectral embedding</li>
+            <li>Working on GNN for seismology</li>
           </ul>
         </div>
       </div>
@@ -217,20 +245,18 @@
 
         <div class="section">
           <h2>Current Research Projects</h2>
-          <div class="slider-container">
-            <div class="slider">
-              <div class="slide">
-                <img src="assets/images/lanl1.png" alt="Seismic Event" />
-                <div class="slide-caption">Seismic Event Generalization</div>
-              </div>
-              <div class="slide">
-                <img src="assets/images/cpd1.png" alt="Spectral Embedding" />
-                <div class="slide-caption">Spectral Embedding</div>
-              </div>
-              <div class="slide">
-                <img src="assets/images/gcn.jpg" alt="Graph Neural Networks" />
-                <div class="slide-caption">Graph Neural Networks</div>
-              </div>
+          <div class="project-images">
+            <div class="image-block">
+              <img src="assets/images/lanl1.png" alt="Seismic Event" />
+              <div>Seismic Event Generalization</div>
+            </div>
+            <div class="image-block">
+              <img src="assets/images/cpd1.png" alt="Spectral Embedding" />
+              <div>Spectral Embedding</div>
+            </div>
+            <div class="image-block">
+              <img src="assets/images/gcn.jpg" alt="Graph Neural Networks" />
+              <div>Graph Neural Networks</div>
             </div>
           </div>
         </div>
