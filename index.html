@@ -14,12 +14,12 @@
       background-color: #fff;
       color: #222;
     }
-
     nav {
       background-color: #1f77b4;
       color: white;
       padding: 1rem 2rem;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
       position: fixed;
@@ -28,46 +28,42 @@
       z-index: 1000;
       font-size: 1.1rem;
     }
-
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     .container {
       max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1.5rem;
     }
-
     .intro {
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
       gap: 2rem;
     }
-
     .intro img {
       width: 220px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     }
-
     .left-panel {
       flex: 1;
       min-width: 240px;
     }
-
     .contact {
       margin-top: 1.2rem;
       font-size: 0.9rem;
+      color: #333;
     }
-
+    .contact a {
+      text-decoration: none;
+    }
     .button-link {
       display: inline-block;
       margin-top: 0.6rem;
@@ -79,53 +75,50 @@
       font-size: 0.95rem;
       text-decoration: none;
     }
-
+    .button-link:hover {
+      background-color: #c8e0fa;
+    }
     .news {
       margin-top: 2rem;
       background-color: #f4faff;
       padding: 1rem;
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
-      max-height: 200px;
+      max-height: 160px;
       overflow-y: auto;
     }
-
     .news strong {
+      display: block;
       font-size: 1.1rem;
+      margin-bottom: 0.5rem;
       color: #1f77b4;
     }
-
     .news ul {
-      padding-left: 1.5rem;
+      padding-left: 1.2rem;
+      margin: 0;
     }
-
+    .news li {
+      margin-bottom: 0.4rem;
+    }
     .main-content-right {
       flex: 3;
       min-width: 260px;
     }
-
     .main-content-right h1 {
       font-size: 2.2rem;
-      margin-bottom: 0.8rem;
       color: #1f77b4;
-      text-align: left;
     }
-
     .section {
       margin-top: 2rem;
-      text-align: left;
     }
-
     .section h2 {
       font-size: 1.5rem;
       color: #1f77b4;
       margin-bottom: 0.6rem;
     }
-
     ul {
       padding-left: 1.2rem;
     }
-
     footer {
       background-color: #1f77b4;
       color: white;
@@ -136,17 +129,15 @@
       bottom: 0;
     }
 
-    /* Image Carousel */
-    .carousel-wrapper {
+    /* Carousel */
+    .carousel-container {
       position: relative;
       width: 100%;
-      height: 320px;
+      height: 300px;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      margin-top: 1rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
     }
-
     .carousel-image {
       position: absolute;
       width: 100%;
@@ -156,17 +147,14 @@
       transform: translateX(100%);
       transition: transform 1s ease, opacity 1s ease;
     }
-
     .carousel-image.active {
       opacity: 1;
       transform: translateX(0);
-      z-index: 2;
+      z-index: 1;
     }
-
-    .carousel-image.exit {
+    .carousel-image.prev {
       transform: translateX(-100%);
       opacity: 0;
-      z-index: 1;
     }
 
     @media (max-width: 768px) {
@@ -174,10 +162,15 @@
         flex-direction: column;
         align-items: center;
       }
-
       .intro {
         flex-direction: column;
         align-items: center;
+        text-align: center;
+      }
+      .button-link {
+        margin: 0.3rem auto;
+      }
+      .news {
         text-align: center;
       }
     }
@@ -195,18 +188,15 @@
     <div class="intro">
       <div class="left-panel">
         <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
-        <div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">
-          Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM
-        </div>
+        <div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM</div>
         <div class="contact">
           <strong>Contact Information</strong><br />
-          📍 1244, NE Road, WSU, Pullman, WA<br />
-          📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a><br />
-          📞 +1-(509)-715-8554
-          <br><br>
-          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link">GitHub</a><br />
-          <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link">LinkedIn</a><br />
-          <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link">Download CV</a>
+          <div>📍 1244, NE Road, WSU, Pullman, WA</div>
+          <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
+          <div>📞 +1-(509)-715-8554</div>
+          <a href="https://github.com/mahedihasanstat" class="button-link"><i class="fab fa-github"></i> GitHub</a><br />
+          <a href="https://www.linkedin.com/in/your-link" class="button-link"><i class="fab fa-linkedin"></i> LinkedIn</a><br />
+          <a href="assets/files/CV_Mahedi_Hasan.pdf" class="button-link"><i class="fas fa-file-download"></i> Download CV</a>
         </div>
         <div class="news">
           <strong>Recent Updates or News</strong>
@@ -214,6 +204,8 @@
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
+            <li>Preparing job talk for Fall 2025 faculty interviews</li>
+            <li>Paper submitted to IEEE Transactions on Geoscience and Remote Sensing</li>
           </ul>
         </div>
       </div>
@@ -221,10 +213,13 @@
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
         <p>
-          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
+          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models.
+          I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
         </p>
         <p>
-          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
+          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
+          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
         </p>
         <p>
           My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
@@ -233,9 +228,8 @@
         <div class="section">
           <h2>Research Interests</h2>
           <ul>
-            <li>Statistical learning</li>
-            <li>Graph neural networks</li>
-            <li>Interpretable AI</li>
+            <li>Statistical learning and interpretable AI</li>
+            <li>Graph neural networks and embedding methods</li>
             <li>Spatio-temporal and multivariate modeling</li>
             <li>Applications in seismology, bioinformatics, and social networks</li>
           </ul>
@@ -243,10 +237,10 @@
 
         <div class="section">
           <h2>Current Research Projects</h2>
-          <div class="carousel-wrapper">
-            <img src="assets/images/lanl1.png" class="carousel-image active" alt="Seismic Event Generalization" />
-            <img src="assets/images/cpd1.png" class="carousel-image" alt="Spectral Embedding" />
-            <img src="assets/images/gcn.jpg" class="carousel-image" alt="Graph Neural Networks" />
+          <div class="carousel-container">
+            <img src="assets/images/lanl1.png" class="carousel-image active" alt="Seismic Event Generalization">
+            <img src="assets/images/cpd1.png" class="carousel-image" alt="Spectral Embedding">
+            <img src="assets/images/gcn.jpg" class="carousel-image" alt="Graph Neural Networks">
           </div>
         </div>
       </div>
@@ -262,18 +256,10 @@
     let index = 0;
 
     setInterval(() => {
-      const current = images[index];
-      current.classList.remove('active');
-      current.classList.add('exit');
-
+      images[index].classList.remove('active');
       index = (index + 1) % images.length;
-      const next = images[index];
-
-      setTimeout(() => {
-        images.forEach(img => img.classList.remove('exit'));
-        next.classList.add('active');
-      }, 1000);
-    }, 5000);
+      images[index].classList.add('active');
+    }, 5000); // 5 seconds delay
   </script>
 </body>
 </html>
