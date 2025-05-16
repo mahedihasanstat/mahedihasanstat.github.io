@@ -14,6 +14,7 @@
       background-color: #fff;
       color: #222;
     }
+
     nav {
       background-color: #1f77b4;
       color: white;
@@ -27,39 +28,46 @@
       z-index: 1000;
       font-size: 1.1rem;
     }
+
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     .container {
       max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1.5rem;
     }
+
     .intro {
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
       gap: 2rem;
     }
+
     .intro img {
       width: 220px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     }
+
     .left-panel {
       flex: 1;
       min-width: 240px;
     }
+
     .contact {
       margin-top: 1.2rem;
       font-size: 0.9rem;
-      color: #333;
     }
+
     .button-link {
       display: inline-block;
       margin-top: 0.6rem;
@@ -71,6 +79,7 @@
       font-size: 0.95rem;
       text-decoration: none;
     }
+
     .news {
       margin-top: 2rem;
       background-color: #f4faff;
@@ -80,38 +89,43 @@
       max-height: 200px;
       overflow-y: auto;
     }
+
     .news strong {
       font-size: 1.1rem;
       color: #1f77b4;
     }
+
     .news ul {
       padding-left: 1.5rem;
     }
-    .news li {
-      margin-bottom: 0.4rem;
-    }
+
     .main-content-right {
       flex: 3;
       min-width: 260px;
     }
+
     .main-content-right h1 {
       font-size: 2.2rem;
       margin-bottom: 0.8rem;
       color: #1f77b4;
       text-align: left;
     }
+
     .section {
       margin-top: 2rem;
       text-align: left;
     }
+
     .section h2 {
       font-size: 1.5rem;
       color: #1f77b4;
       margin-bottom: 0.6rem;
     }
+
     ul {
       padding-left: 1.2rem;
     }
+
     footer {
       background-color: #1f77b4;
       color: white;
@@ -122,33 +136,34 @@
       bottom: 0;
     }
 
-    /* Research Project Slider */
-    #research-projects {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    #slider {
+    /* Image Carousel */
+    .carousel-wrapper {
+      position: relative;
       width: 100%;
       height: 320px;
-      position: relative;
       overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      margin-top: 1rem;
     }
-    #slider img {
+
+    .carousel-image {
+      position: absolute;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      position: absolute;
-      top: 0;
       opacity: 0;
       transform: translateX(100%);
-      transition: transform 1.2s ease-in-out, opacity 1.2s ease-in-out;
+      transition: transform 1s ease, opacity 1s ease;
     }
-    #slider img.active {
+
+    .carousel-image.active {
       opacity: 1;
-      transform: translateX(0%);
+      transform: translateX(0);
       z-index: 2;
     }
-    #slider img.exit {
+
+    .carousel-image.exit {
       transform: translateX(-100%);
       opacity: 0;
       z-index: 1;
@@ -159,6 +174,7 @@
         flex-direction: column;
         align-items: center;
       }
+
       .intro {
         flex-direction: column;
         align-items: center;
@@ -184,9 +200,10 @@
         </div>
         <div class="contact">
           <strong>Contact Information</strong><br />
-          <div>📍 1244, NE Road, WSU, Pullman, WA</div>
-          <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
-          <div>📞 +1-(509)-715-8554</div>
+          📍 1244, NE Road, WSU, Pullman, WA<br />
+          📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a><br />
+          📞 +1-(509)-715-8554
+          <br><br>
           <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link">GitHub</a><br />
           <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link">LinkedIn</a><br />
           <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link">Download CV</a>
@@ -203,11 +220,15 @@
 
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
-        <div style="margin-top: 1.5rem;">
-          <p>I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.</p>
-          <p>I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.</p>
-          <p>My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.</p>
-        </div>
+        <p>
+          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
+        </p>
+        <p>
+          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
+        </p>
+        <p>
+          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
+        </p>
 
         <div class="section">
           <h2>Research Interests</h2>
@@ -220,12 +241,12 @@
           </ul>
         </div>
 
-        <div id="research-projects" class="section">
+        <div class="section">
           <h2>Current Research Projects</h2>
-          <div id="slider">
-            <img src="assets/images/lanl1.png" alt="Seismic Event Generalization" class="active" />
-            <img src="assets/images/cpd1.png" alt="Spectral Embedding" />
-            <img src="assets/images/gcn.jpg" alt="Graph Neural Networks" />
+          <div class="carousel-wrapper">
+            <img src="assets/images/lanl1.png" class="carousel-image active" alt="Seismic Event Generalization" />
+            <img src="assets/images/cpd1.png" class="carousel-image" alt="Spectral Embedding" />
+            <img src="assets/images/gcn.jpg" class="carousel-image" alt="Graph Neural Networks" />
           </div>
         </div>
       </div>
@@ -237,15 +258,22 @@
   </footer>
 
   <script>
-    const images = document.querySelectorAll('#slider img');
-    let current = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    let index = 0;
+
     setInterval(() => {
-      images[current].classList.remove('active');
-      images[current].classList.add('exit');
-      current = (current + 1) % images.length;
-      images[current].classList.remove('exit');
-      images[current].classList.add('active');
-    }, 4000);
+      const current = images[index];
+      current.classList.remove('active');
+      current.classList.add('exit');
+
+      index = (index + 1) % images.length;
+      const next = images[index];
+
+      setTimeout(() => {
+        images.forEach(img => img.classList.remove('exit'));
+        next.classList.add('active');
+      }, 1000);
+    }, 5000);
   </script>
 </body>
 </html>
