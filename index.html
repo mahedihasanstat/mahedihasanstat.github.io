@@ -59,7 +59,6 @@
     .contact {
       margin-top: 1.2rem;
       font-size: 0.9rem;
-      color: #333;
     }
     .contact a {
       text-decoration: none;
@@ -74,12 +73,12 @@
       border-radius: 6px;
       font-size: 0.95rem;
       text-decoration: none;
-      transition: background-color 0.3s ease, box-shadow 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .button-link i {
+      margin-right: 6px;
     }
     .button-link:hover {
       background-color: #c8e0fa;
-      text-decoration: none;
     }
     .news {
       margin-top: 2rem;
@@ -87,28 +86,18 @@
       padding: 1rem;
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
-      height: 150px;
-      overflow: hidden;
-      position: relative;
+      max-height: 160px;
+      overflow-y: auto;
     }
     .news strong {
       display: block;
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: #1f77b4;
-      background-color: #f4faff;
-      z-index: 2;
-      position: relative;
-    }
-    .news ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin: 0;
-      animation: scroll-up 10s linear infinite;
-    }
-    @keyframes scroll-up {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-100%); }
+      position: sticky;
+      top: 0;
+      background: #f4faff;
+      padding: 0.2rem 0;
     }
     .main-content-right {
       flex: 3;
@@ -127,8 +116,41 @@
       color: #1f77b4;
       margin-bottom: 0.6rem;
     }
-    ul {
-      padding-left: 1.2rem;
+    .slider-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      height: 220px;
+      margin-top: 1rem;
+    }
+    .slider {
+      display: flex;
+      width: 300%;
+      animation: slideShow 12s infinite;
+    }
+    .slide {
+      flex: 0 0 100%;
+      text-align: center;
+    }
+    .slide img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .slide-caption {
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 0.3rem;
+    }
+    @keyframes slideShow {
+      0% { transform: translateX(0%); }
+      33% { transform: translateX(0%); }
+      40% { transform: translateX(-100%); }
+      73% { transform: translateX(-100%); }
+      80% { transform: translateX(-200%); }
+      100% { transform: translateX(-200%); }
     }
     footer {
       background-color: #1f77b4;
@@ -138,31 +160,6 @@
       position: fixed;
       width: 100%;
       bottom: 0;
-    }
-    .carousel img {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: block;
-      margin: auto;
-    }
-    .carousel-caption {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #444;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-      .intro {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
     }
   </style>
 </head>
@@ -183,10 +180,10 @@
         </div>
         <div class="contact">
           <strong>Contact Information</strong><br />
-          <div>📍 1244, NE Road, WSU, Pullman, WA</div>
-          <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
-          <div>📞 +1-(509)-715-8554</div>
-          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link"><i class="fab fa-github"></i> GitHub</a><br />
+          📍 1244, NE Road, WSU, Pullman, WA<br />
+          📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a><br />
+          📞 +1-(509)-715-8554
+          <br /><a href="https://github.com/mahedihasanstat" target="_blank" class="button-link"><i class="fab fa-github"></i> GitHub</a><br />
           <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link"><i class="fab fa-linkedin"></i> LinkedIn</a><br />
           <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link"><i class="fas fa-file-download"></i> Download CV</a>
         </div>
@@ -196,25 +193,16 @@
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
-            <li>Finalizing dissertation edits</li>
-            <li>Preparing workshop on interpretability</li>
+            <li>Submitted paper on spectral embedding in dynamic networks</li>
+            <li>Preparing data for new GNN-based classification study</li>
           </ul>
         </div>
       </div>
-
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
-        <p>
-          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
-          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
-        </p>
-        <p>
-          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
-          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
-        </p>
-        <p>
-          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
-        </p>
+        <p>I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.</p>
+        <p>I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.</p>
+        <p>My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.</p>
 
         <div class="section">
           <h2>Research Interests</h2>
@@ -229,11 +217,24 @@
 
         <div class="section">
           <h2>Current Research Projects</h2>
-          <div class="carousel">
-            <img id="carouselImage" src="assets/images/lanl1.png" alt="Current Project Image" />
-            <div class="carousel-caption" id="carouselCaption">Seismic Event Generalization</div>
+          <div class="slider-container">
+            <div class="slider">
+              <div class="slide">
+                <img src="assets/images/lanl1.png" alt="Seismic Event" />
+                <div class="slide-caption">Seismic Event Generalization</div>
+              </div>
+              <div class="slide">
+                <img src="assets/images/cpd1.png" alt="Spectral Embedding" />
+                <div class="slide-caption">Spectral Embedding</div>
+              </div>
+              <div class="slide">
+                <img src="assets/images/gcn.jpg" alt="Graph Neural Networks" />
+                <div class="slide-caption">Graph Neural Networks</div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -241,20 +242,5 @@
   <footer>
     © 2025 Mahedi Hasan | Designed for academic use
   </footer>
-
-  <script>
-    const images = [
-      { src: "assets/images/lanl1.png", caption: "Seismic Event Generalization" },
-      { src: "assets/images/cpd1.png", caption: "Spectral Embedding" },
-      { src: "assets/images/gcn.jpg", caption: "Graph Neural Networks" }
-    ];
-    let index = 0;
-
-    setInterval(() => {
-      index = (index + 1) % images.length;
-      document.getElementById('carouselImage').src = images[index].src;
-      document.getElementById('carouselCaption').innerText = images[index].caption;
-    }, 4000);
-  </script>
 </body>
 </html>
