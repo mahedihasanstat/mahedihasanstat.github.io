@@ -97,7 +97,7 @@
       padding: 1rem;
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
-      max-height: 160px;
+      max-height: 140px;
       overflow-y: auto;
     }
 
@@ -127,12 +127,10 @@
       font-size: 2.2rem;
       margin-bottom: 0.8rem;
       color: #1f77b4;
-      text-align: left;
     }
 
     .section {
       margin-top: 2rem;
-      text-align: left;
     }
 
     .section h2 {
@@ -141,37 +139,34 @@
       margin-bottom: 0.6rem;
     }
 
-    ul {
-      padding-left: 1.2rem;
-    }
-
     .carousel-container {
       position: relative;
       width: 100%;
-      height: 400px;
+      height: 300px;
       overflow: hidden;
       border-radius: 10px;
       background-color: #f9f9f9;
       margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .carousel-image {
       position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       opacity: 0;
       transform: translateX(100%);
-      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+      transition: all 1s ease-in-out;
     }
 
     .carousel-image.active {
       opacity: 1;
       transform: translateX(0);
       z-index: 1;
+    }
+
+    ul {
+      padding-left: 1.2rem;
     }
 
     footer {
@@ -211,7 +206,7 @@
       }
 
       .carousel-container {
-        height: 240px;
+        height: 200px;
       }
     }
   </style>
@@ -247,8 +242,8 @@
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
-            <li>Submitted GNN paper for review</li>
-            <li>Drafting manuscript on Seismic Generalization</li>
+            <li>Paper on GNN submitted</li>
+            <li>Preparing manuscript on seismic generalization</li>
           </ul>
         </div>
       </div>
@@ -302,7 +297,7 @@
       images[index].classList.remove('active');
       index = (index + 1) % images.length;
       images[index].classList.add('active');
-    }, 5000);
+    }, 5000); // Change every 5 seconds
   </script>
 </body>
 </html>
