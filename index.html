@@ -95,6 +95,8 @@
       padding: 1rem;
       border-left: 5px solid #1f77b4;
       border-radius: 6px;
+      max-height: 140px;
+      overflow-y: auto;
     }
     .news strong {
       display: block;
@@ -173,19 +175,13 @@
     <a href="resources.html">Open Resources</a>
   </nav>
 
-
-<!-- Search Bar -->
-<form style="max-width: 300px; margin: 1rem 1.5rem 0 auto; display: flex; gap: 0.5rem; justify-content: flex-end;" action="#" method="get">
-  <input type="text" name="q" placeholder="Search this site..." style="padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid #ccc; font-size: 1rem; width: 100%;" />
-  <button type="submit" style="padding: 0.4rem 0.8rem; border-radius: 4px; border: none; background-color: #1f77b4; color: white; font-weight: bold; cursor: pointer;">Search</button>
-</form>
-
-
   <div class="container">
     <div class="intro">
       <div class="left-panel">
         <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
-<div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM</div>
+        <div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">
+          Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM
+        </div>
         <div class="contact">
           <strong>Contact Information</strong><br />
           <div>📍 1244, NE Road, WSU, Pullman, WA</div>
@@ -195,56 +191,50 @@
           <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link"><i class="fab fa-linkedin"></i> LinkedIn</a><br />
           <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link"><i class="fas fa-file-download"></i> Download CV</a>
         </div>
+
+        <!-- Scrollable News Section -->
         <div class="news">
           <strong>Recent Updates or News</strong>
           <ul>
             <li>Waiting to join postdoc on July 01, 2025</li>
             <li>Will begin summer position at LANL from May 26, 2025</li>
             <li>Will attend JSM conference this summer</li>
+            <li>Presented a paper on seismic classification at APS</li>
+            <li>Published a paper on change point detection in networks</li>
           </ul>
         </div>
       </div>
+
       <div class="main-content-right">
         <h1>Mahedi Hasan</h1>
         <div style="margin-top: 1.5rem;">
-          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
-          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
-        </p>
-        <p>
-          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
-          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
-        </p>
-        <p>
-          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
-        </p>
-        <div class="section">
-          <h2>Research Interests</h2>
           <p>
-            My research interests include: statistical learning, graph neural networks, interpretable AI, spatio-temporal and multivariate modeling, and applied work in domains such as seismology, bioinformatics, and social networks.
+            I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
+            <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
+          </p>
+          <p>
+            I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
+            <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
+          </p>
+          <p>
+            My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
           </p>
         </div>
-          
-<div class="section">
-  <h2>Current Research Projects</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; margin-top: 1.5rem;">
-    <div style="flex: 1; min-width: 30%; text-align: center;">
-      <img src="assets/images/lanl1.png" alt="COD Figure" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
-      <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #444;">Seismic Event Generalization</div>
-    </div>
-    <div style="flex: 1; min-width: 30%; text-align: center;">
-      <img src="assets/images/cpd1.png" alt="LAND Figure" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
-      <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #444;">Spectral Embedding</div>
-    </div>
-    <div style="flex: 1; min-width: 30%; text-align: center;">
-      <img src="assets/images/gcn.jpg" alt="NET Figure" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
-      <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #444;">Graph Neural Networks</div>
-    </div>
-  </div>
-</div>
+
+        <div class="section">
+          <h2>Research Interests</h2>
+          <ul>
+            <li>Statistical learning</li>
+            <li>Graph neural networks</li>
+            <li>Interpretable AI</li>
+            <li>Spatio-temporal and multivariate modeling</li>
+            <li>Applications in seismology, bioinformatics, and social networks</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
+
   <footer>
     © 2025 Mahedi Hasan | Designed for academic use
   </footer>
