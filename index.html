@@ -10,7 +10,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding-top: 70px;
-      padding-bottom: 110px; /* increased to avoid footer overlap */
+      padding-bottom: 150px; /* prevent overlap with footer */
       background-color: #fff;
       color: #222;
     }
@@ -142,25 +142,25 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      height: 400px; /* taller for better display */
+      max-width: 800px;
+      height: 500px;
+      margin: 1.5rem auto 4rem auto;
       background-color: #f2f8fc;
       border: 1.5px solid #ddd;
       border-radius: 10px;
       overflow: hidden;
-      margin-top: 1.5rem;
-      margin-bottom: 3rem; /* spacing above footer */
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .carousel-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* fill box while cropping minimally */
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       opacity: 0;
       transition: opacity 1s ease-in-out;
+      position: absolute;
     }
 
     .carousel-image.active {
@@ -209,7 +209,8 @@
       }
 
       .carousel-container {
-        height: 250px;
+        height: 300px;
+        max-width: 95%;
       }
     }
   </style>
@@ -303,7 +304,7 @@
 
       setTimeout(() => {
         images[currentIndex].classList.add("active");
-      }, 300); // slight pause before next image appears
+      }, 300); // slight pause
     }, 5000); // every 5 seconds
   </script>
 </body>
