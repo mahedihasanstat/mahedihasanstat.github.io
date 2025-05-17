@@ -273,10 +273,32 @@
           </ul>
         </div>
 
+        <div class="section">
+          <h2>Current Research Projects</h2>
+          <div class="carousel-container" id="researchCarousel">
+            <img src="assets/images/project1.png" alt="Project 1" class="carousel-image active" />
+            <img src="assets/images/project2.png" alt="Project 2" class="carousel-image" />
+            <img src="assets/images/project3.png" alt="Project 3" class="carousel-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     © 2025 Mahedi Hasan | Designed for academic use
   </footer>
 
+  <script>
+    let currentIndex = 0;
+    const images = document.querySelectorAll("#researchCarousel .carousel-image");
+    const totalImages = images.length;
+
+    setInterval(() => {
+      images[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % totalImages;
+      images[currentIndex].classList.add("active");
+    }, 4000); // 4 seconds per image
+  </script>
 </body>
 </html>
