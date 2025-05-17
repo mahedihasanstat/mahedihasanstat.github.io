@@ -10,7 +10,6 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding-top: 70px;
-      padding-bottom: 150px; /* prevent overlap with footer */
       background-color: #fff;
       color: #222;
     }
@@ -44,6 +43,7 @@
       max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1.5rem;
+      padding-bottom: 100px; /* Ensure content doesn't collide with footer */
     }
 
     .intro {
@@ -140,18 +140,16 @@
     }
 
     .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      height: 500px;
-      margin: 1.5rem auto 4rem auto;
-      background-color: #f2f8fc;
-      border: 1.5px solid #ddd;
-      border-radius: 10px;
-      overflow: hidden;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      margin: 1.5rem 0;
+      padding: 0.5rem;
+      background-color: #f2f8fc;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .carousel-image {
@@ -165,11 +163,8 @@
 
     .carousel-image.active {
       opacity: 1;
+      position: relative;
       z-index: 1;
-    }
-
-    ul {
-      padding-left: 1.2rem;
     }
 
     footer {
@@ -180,6 +175,7 @@
       position: fixed;
       width: 100%;
       bottom: 0;
+      left: 0;
     }
 
     @media (max-width: 768px) {
@@ -209,8 +205,7 @@
       }
 
       .carousel-container {
-        height: 300px;
-        max-width: 95%;
+        flex-direction: column;
       }
     }
   </style>
@@ -256,16 +251,8 @@
         <h1>Mahedi Hasan</h1>
         <p>
           I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
-          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
+          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>.
         </p>
-        <p>
-          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
-          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
-        </p>
-        <p>
-          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
-        </p>
-
         <div class="section">
           <h2>Research Interests</h2>
           <ul>
@@ -304,8 +291,8 @@
 
       setTimeout(() => {
         images[currentIndex].classList.add("active");
-      }, 300); // slight pause
-    }, 5000); // every 5 seconds
+      }, 300);
+    }, 5000);
   </script>
 </body>
 </html>
