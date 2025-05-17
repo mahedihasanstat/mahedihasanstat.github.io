@@ -142,26 +142,28 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      height: 300px;
+      background-color: #f2f8fc;
+      border: 1.5px solid #ddd;
       border-radius: 10px;
-      background-color: #f9f9f9;
+      overflow: hidden;
       margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .carousel-image {
       position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       opacity: 0;
-      transform: translateX(100%);
-      transition: all 1s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
 
     .carousel-image.active {
       opacity: 1;
-      transform: translateX(0);
       z-index: 1;
     }
 
@@ -206,7 +208,7 @@
       }
 
       .carousel-container {
-        height: 200px;
+        height: 220px;
       }
     }
   </style>
@@ -276,9 +278,9 @@
         <div class="section">
           <h2>Current Research Projects</h2>
           <div class="carousel-container" id="researchCarousel">
-            <img src="assets/images/lanl1.png" alt="Project 1" class="carousel-image active" />
-            <img src="assets/images/cpd1.png" alt="Project 2" class="carousel-image" />
-            <img src="assets/images/gcn.jpg" alt="Project 3" class="carousel-image" />
+            <img src="assets/images/project1.png" alt="Project 1" class="carousel-image active" />
+            <img src="assets/images/project2.png" alt="Project 2" class="carousel-image" />
+            <img src="assets/images/project3.png" alt="Project 3" class="carousel-image" />
           </div>
         </div>
       </div>
@@ -297,8 +299,11 @@
     setInterval(() => {
       images[currentIndex].classList.remove("active");
       currentIndex = (currentIndex + 1) % totalImages;
-      images[currentIndex].classList.add("active");
-    }, 4000); // 4 seconds per image
+
+      setTimeout(() => {
+        images[currentIndex].classList.add("active");
+      }, 300); // slight pause before next image appears
+    }, 5000); // every 5 seconds
   </script>
 </body>
 </html>
