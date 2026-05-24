@@ -7,27 +7,37 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      padding-top: 70px;
-      padding-bottom: 100px;
-      background-color: #fff;
-      color: #222;
+      padding: 0;
+      background: #fff;
+      color: #1b1b1b;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    a {
+      color: #0b6fae;
     }
 
     nav {
       background-color: #1f77b4;
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 2rem;
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 1000;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     nav a {
@@ -40,135 +50,357 @@
       text-decoration: underline;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-      padding-bottom: 100px;
+    .site-search {
+      position: relative;
+      width: min(190px, 100%);
     }
 
-    .intro {
+    .site-search label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .site-search input {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.42rem 0.7rem;
+      font: inherit;
+      font-size: 0.92rem;
+    }
+
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      right: 0;
+      width: min(360px, 90vw);
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff;
+      color: #222;
+      border: 1px solid #d7e6f3;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      text-align: left;
+    }
+
+    .search-results.is-visible {
+      display: block;
+    }
+
+    .search-results a,
+    .search-results div {
+      display: block;
+      padding: 0.75rem;
+      color: #222;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: normal;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .search-results a:hover {
+      background: #f4faff;
+      text-decoration: none;
+    }
+
+    .search-results strong {
+      display: block;
+      color: #1f77b4;
+      margin-bottom: 0.2rem;
+    }
+
+    .search-results span {
+      display: block;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    mark.search-highlight {
+      background: #fff2a8;
+      color: inherit;
+      padding: 0 0.12rem;
+      border-radius: 3px;
+    }
+
+    .page {
+      width: min(860px, calc(100% - 2rem));
+      margin: 0.55rem auto 0;
+    }
+
+    .profile-shell {
+      position: relative;
+      border: 1px solid #dce8f2;
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 8px 26px rgba(31, 119, 180, 0.12);
+    }
+
+    .cover-ribbon {
+      position: relative;
+      height: 155px;
+      overflow: hidden;
+      background: #dbeaf5;
+    }
+
+    .cover-ribbon img,
+    .cover-ribbon iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+      opacity: 0;
+      transform: scale(1.03);
+      transition: opacity 900ms ease, transform 900ms ease;
+    }
+
+    .cover-ribbon iframe {
+      pointer-events: none;
+    }
+
+    .cover-ribbon img.active,
+    .cover-ribbon iframe.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .cover-ribbon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.22));
+      pointer-events: none;
+    }
+
+    .cover-credit {
+      position: absolute;
+      right: 0.55rem;
+      bottom: 0.4rem;
+      z-index: 2;
+      padding: 0.18rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.82);
+      color: #31566e;
+      font-size: 0.68rem;
+      line-height: 1.1;
+    }
+
+    .profile-summary {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 1rem;
+      align-items: end;
+      padding: 0 1.25rem 1rem;
+    }
+
+    .profile-main {
+      min-width: 0;
+    }
+
+    .profile-photo-wrap {
+      margin-top: -138px;
+      margin-bottom: 0.2rem;
+      z-index: 2;
+    }
+
+    .profile-photo {
+      display: block;
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .profile-info {
+      padding-top: 0;
+    }
+
+    .profile-info h1 {
+      margin: 0;
+      color: #1f77b4;
+      font-size: 1.45rem;
+      line-height: 1.05;
+    }
+
+    .position {
+      margin: 0.05rem 0 0.35rem;
+      color: #2d2d2d;
+      font-size: 0.8rem;
+      line-height: 1.25;
+    }
+
+    .position a {
+      color: #1f77b4;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .position a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-row {
+      display: grid;
+      gap: 0.08rem;
+      color: #555;
+      font-size: 0.78rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-row a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .profile-link-bar {
       display: flex;
       flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 2rem;
+      width: min(270px, 100%);
+      margin-top: 0.65rem;
+      margin-left: 0;
+      margin-right: auto;
+      overflow: hidden;
+      background: #e9f4ff;
+      border: 1px solid #cfe3f4;
+      border-radius: 6px;
     }
 
-    .intro img {
-      width: 220px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 70px;
+      min-height: 30px;
+      padding: 0.3rem 0.45rem;
+      color: #1f77b4;
+      font-weight: 700;
+      font-size: 0.84rem;
+      text-decoration: none;
+      border-right: 1px solid #cfe3f4;
     }
 
-    .left-panel {
-      flex: 1;
-      min-width: 240px;
+    .profile-link:hover {
+      background: #d7ebfb;
+      text-decoration: none;
     }
 
-    .contact {
-      margin-top: 1.2rem;
-      font-size: 0.9rem;
+    .profile-link:last-child {
+      border-right: 0;
+    }
+
+    .updates-box {
+      margin-top: 0.8rem;
+      padding: 0.65rem 0.8rem;
+      max-height: 112px;
+      overflow-y: auto;
+      background: #f7fbff;
+      border: 1px solid #d7e7f3;
+      border-left: 4px solid #1f77b4;
+      border-radius: 6px;
+    }
+
+    .updates-box h2 {
+      margin: 0 0 0.4rem;
+      color: #1f77b4;
+      font-size: 0.98rem;
+    }
+
+    .updates-box ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.82rem;
       color: #333;
     }
 
-    .contact a {
-      text-decoration: none;
+    .updates-box li {
+      margin-bottom: 0.25rem;
     }
 
-    .button-link {
-      display: inline-block;
-      margin-top: 0.6rem;
-      padding: 0.5rem 1rem;
-      background-color: #e0efff;
+    .updates-box li:last-child {
+      margin-bottom: 0;
+    }
+
+    .updates-box a {
       color: #1f77b4;
       font-weight: 600;
-      border-radius: 6px;
-      font-size: 0.95rem;
       text-decoration: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .button-link:hover {
-      background-color: #c8e0fa;
+    .updates-box a:hover {
+      text-decoration: underline;
     }
 
-    .news {
-      margin-top: 2rem;
-      background-color: #f4faff;
-      padding: 1rem;
-      border-left: 5px solid #1f77b4;
-      border-radius: 6px;
-      max-height: 140px;
-      overflow-y: auto;
-    }
-
-    .news strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: #1f77b4;
-    }
-
-    .news ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin: 0;
-    }
-
-    .news li {
-      margin-bottom: 0.4rem;
-    }
-
-    .main-content-right {
-      flex: 3;
-      min-width: 260px;
-    }
-
-    .main-content-right h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.8rem;
-      color: #1f77b4;
+    .content {
+      width: min(860px, calc(100% - 2rem));
+      margin: 1.15rem auto 0;
     }
 
     .section {
-      margin-top: 2rem;
+      margin-top: 1.15rem;
+      max-width: 900px;
+    }
+
+    .section:first-child {
+      margin-top: 0;
     }
 
     .section h2 {
-      font-size: 1.5rem;
+      margin: 0 0 0.45rem;
       color: #1f77b4;
-      margin-bottom: 0.6rem;
+      font-size: 1.22rem;
     }
 
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      margin-top: 1.5rem;
-      margin-bottom: 4rem;
-      height: auto;
+    .section p {
+      margin: 0 0 0.5rem;
     }
 
-    .carousel-image {
-      position: absolute;
-      width: auto;
-      max-width: 100%;
-      max-height: 500px;
-      opacity: 0;
-      transform: translateX(100%);
-      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-      margin: 0, auto;
+    .about-section p {
+      text-align: justify;
+      text-justify: inter-word;
     }
 
-    .carousel-image.active {
-      opacity: 1;
-      transform: translateX(0);
-      position: relative;
-      z-index: 1;
-    }
-
-    ul {
+    .interest-list {
+      columns: 2;
+      column-gap: 2rem;
+      margin: 0;
       padding-left: 1.2rem;
+    }
+
+    .interest-list li {
+      margin-bottom: 0.25rem;
+      break-inside: avoid;
+      color: #2b2b2b;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .research-update-media {
+      margin-top: 0.55rem;
+      border: 1px solid #d7e7f3;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f7fbff;
+    }
+
+    .research-update-media img {
+      display: block;
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
     }
 
     footer {
@@ -176,44 +408,118 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      position: fixed;
       width: 100%;
-      bottom: 0;
-      left: 0;
+      margin-top: 3rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 760px) {
       nav {
-        flex-direction: column;
-        align-items: center;
+        gap: 0.4rem 1rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
       }
 
-      .intro {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+      nav a {
+        padding: 0.2rem 0;
       }
 
-      .main-content-right h1,
-      .section h2 {
-        text-align: center;
+      .site-search {
+        width: min(100%, 420px);
+        order: 10;
       }
 
-      .button-link {
-        margin-left: auto;
+      .search-results {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 420px);
+      }
+
+      .page {
+        width: min(860px, calc(100% - 2rem));
+        margin-top: 0.5rem;
+      }
+
+      .cover-ribbon {
+        height: 145px;
+      }
+
+      .profile-summary {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        align-items: start;
+        padding: 0 1rem 1.25rem;
+      }
+
+      .profile-photo-wrap {
+        margin-top: -112px;
+        margin-bottom: 0.25rem;
+      }
+
+      .profile-photo {
+        width: 145px;
+        height: 145px;
+      }
+
+      .profile-info {
+        padding-top: 0.9rem;
+      }
+
+      .profile-link-bar {
+        width: min(270px, 100%);
+        margin-left: 0;
         margin-right: auto;
       }
 
-      .news {
+      .updates-box {
+        margin-top: 0;
+      }
+
+      .profile-info h1 {
+        font-size: 1.35rem;
+      }
+
+      .content {
+        width: min(860px, calc(100% - 2rem));
+      }
+
+      .interest-list {
+        columns: 1;
+      }
+    }
+
+    @media (max-width: 420px) {
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        flex: 1 1 calc(50% - 0.5rem);
         text-align: center;
       }
 
-      .carousel-container {
-        flex-direction: column;
+      .site-search {
+        flex: 1 1 100%;
       }
 
-      .carousel-image {
-        max-height: 300px;
+      .cover-ribbon {
+        height: 130px;
+      }
+
+      .profile-info {
+        padding-top: 0;
+      }
+
+      .profile-info h1 {
+        font-size: 1.25rem;
+      }
+
+      .position {
+        font-size: 0.78rem;
+      }
+
+      .profile-link-bar {
+        width: 100%;
       }
     }
   </style>
@@ -224,92 +530,98 @@
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
     <a href="resources.html">Open Resources</a>
+    <div class="site-search">
+      <label for="site-search-input">Search this website</label>
+      <input id="site-search-input" type="search" placeholder="Search" autocomplete="off" />
+      <div id="site-search-results" class="search-results" aria-live="polite"></div>
+    </div>
   </nav>
 
-  <div class="container">
-    <div class="intro">
-      <div class="left-panel">
-        <img src="assets/images/profile.jpg" alt="Mahedi Hasan" />
-        <div style="margin-top: 1rem; font-weight: bold; font-size: 0.95rem; color: #1f77b4;">
-          Graduate Research Associate,<br />Los Alamos National Laboratory (LANL), NM
-        </div>
-        <div class="contact">
-          <strong>Contact Information</strong><br />
-          <div>📍 1244, NE Road, WSU, Pullman, WA</div>
-          <div>📧 <a href="mailto:mdmahedi.hasan@wsu.edu">mdmahedi.hasan@wsu.edu</a></div>
-          <div>📞 +1-(509)-715-8554</div>
-          <a href="https://github.com/mahedihasanstat" target="_blank" class="button-link">GitHub</a><br />
-          <a href="https://www.linkedin.com/in/your-link" target="_blank" class="button-link">LinkedIn</a><br />
-          <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="button-link">Download CV</a>
-        </div>
-
-        <div class="news">
-          <strong>Recent Updates or News</strong>
-          <ul>
-            <li>Waiting to join postdoc on July 01, 2025</li>
-            <li>Will begin summer position at LANL from May 26, 2025</li>
-            <li>Will attend JSM conference this summer</li>
-            <li>Paper on GNN submitted</li>
-            <li>Preparing manuscript on seismic generalization</li>
-          </ul>
-        </div>
+  <main class="page">
+    <section class="profile-shell" aria-label="Profile overview">
+      <div class="cover-ribbon" id="profileRibbon">
+        <img src="assets/images/ai-ml-wildlife-cover.png" alt="AI, machine learning, and wildlife disease modeling cover illustration" class="active" />
+        <div class="cover-credit">Generated with OpenAI image model</div>
       </div>
 
-      <div class="main-content-right">
-        <h1>Mahedi Hasan</h1>
+      <div class="profile-summary">
+        <div class="profile-main">
+          <div class="profile-photo-wrap">
+            <img class="profile-photo" src="assets/images/profile.jpg" alt="Mahedi Hasan" />
+          </div>
 
-        <p>
-          I am a researcher working at the intersection of statistics and machine learning, with a strong focus on building theoretically grounded and practically effective models. I recently completed my PhD in Statistical Science at Washington State University under the mentorship of
-          <a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a>, where my research centered on deep learning generalization, change point detection in dynamic networks, and fairness-aware graph-based modeling.
-        </p>
-        <p>
-          I also hold a Master’s in Computer Science from WSU, specializing in Machine Learning and AI, where I worked on facial expression recognition and graph-based models with
-          <a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a>. Additionally, I earned a Graduate Certificate in Bioinformatics, with training in omics data analysis and biological network inference.
-        </p>
-        <p>
-          My academic background includes an MPhil in Statistics from BUP focusing on climate-related geospatial modeling, and both MS and BS degrees in Statistics from Shahjalal University of Science and Technology, where I graduated top of my class.
-        </p>
-
-        <div class="section">
-          <h2>Research Interests</h2>
-          <ul>
-            <li>Statistical learning</li>
-            <li>Graph neural networks</li>
-            <li>Interpretable AI</li>
-            <li>Spatio-temporal and multivariate modeling</li>
-            <li>Applications in seismology, bioinformatics, and social networks</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h2>Current Research Projects</h2>
-          <div class="carousel-container" id="researchCarousel">
-            <img src="assets/images/lanl1.png" alt="Project 1" class="carousel-image active" />
-            <img src="assets/images/cpd1.png" alt="Project 2" class="carousel-image" />
-            <img src="assets/images/gcn.jpg" alt="Project 3" class="carousel-image" />
+          <div class="profile-info">
+            <h1>Mahedi Hasan</h1>
+            <p class="position">Postdoc @ <a href="https://stat.wisc.edu" target="_blank">UW-Madison</a>, WI, USA</p>
+            <div class="contact-row">
+              <span>Email: <a href="mailto:mhasan32@wisc.edu">mhasan32 at wisc dot edu</a></span>
+              <span>Contact: +1-(509)-715-8554</span>
+            </div>
+            <div class="profile-link-bar">
+              <a href="https://github.com/mahedihasanstat" target="_blank" class="profile-link">GitHub</a>
+              <a href="https://www.linkedin.com/in/mdmahedihasan-statistics/" target="_blank" class="profile-link">LinkedIn</a>
+              <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="profile-link">CV</a>
+            </div>
           </div>
         </div>
+
+        <aside class="updates-box" aria-label="AI and statistics updates">
+          <h2>AI / Stats Updates</h2>
+          <ul>
+            <li><a href="https://arxiv.org/list/stat.ML/recent" target="_blank">arXiv stat.ML</a> and <a href="https://paperswithcode.com/" target="_blank">Papers with Code</a>.</li>
+            <li><a href="https://neurips.cc" target="_blank">NeurIPS</a>, <a href="https://icml.cc" target="_blank">ICML</a>, <a href="https://iclr.cc" target="_blank">ICLR</a>, and <a href="https://www.amstat.org/meetings/joint-statistical-meetings" target="_blank">JSM</a>.</li>
+            <li><a href="https://openai.com/news/" target="_blank">OpenAI News</a> and <a href="https://deepmind.google/discover/blog/" target="_blank">Google DeepMind Blog</a>.</li>
+            <li><a href="https://www.deeplearning.ai/the-batch/" target="_blank">The Batch</a> and <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank">MIT Tech Review AI</a>.</li>
+            <li><a href="https://www.quantamagazine.org/tag/artificial-intelligence/" target="_blank">Quanta AI</a>, <a href="https://spectrum.ieee.org/artificial-intelligence" target="_blank">IEEE Spectrum AI</a>, and <a href="https://www.nature.com/natmachintell/" target="_blank">Nature Machine Intelligence</a>.</li>
+            <li><a href="https://stat.wisc.edu/events/" target="_blank">UW-Madison Statistics</a> seminars and events.</li>
+          </ul>
+        </aside>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
+
+  <article class="content">
+    <section class="section about-section">
+      <p>
+        I am a Postdoctoral Research Associate in the Department of Statistics at the University of Wisconsin-Madison, working with an interdisciplinary research group led by
+        <a href="https://stat.wisc.edu/staff/zhu-jun/" target="_blank">Professor Jun Zhu</a> from the Department of Statistics and
+        <a href="https://www.usgs.gov/staff-profiles/daniel-p-walsh" target="_blank">Dr. Dan Walsh</a> from the U.S. Geological Survey. My work spans statistical learning, wildlife disease modeling, graph machine learning, and interpretable deep learning.
+      </p>
+      <p>
+        I earned my PhD in Statistical Science from Washington State University, where I worked with
+        <a href="https://www.vassar.edu/faculty/ddeford" target="_blank">Dr. Daryl DeFord</a>. During my PhD, I collaborated with
+        <a href="https://www.lanl.gov" target="_blank">Los Alamos National Laboratory</a>, completed a summer internship there in 2024, and received the WSU Graduate Teaching Excellence Award in 2023 as a graduate student instructor.
+      </p>
+      <p>
+        My experience includes teaching lower- and upper-division statistics and mathematics, working as a research assistant with the
+        <a href="https://labs.wsu.edu/appl/" target="_blank">Analytics and PsychoPharmacology Laboratory (APPL)</a>, and providing statistical consulting through the
+        <a href="https://ciser.wsu.edu" target="_blank">Center for Interdisciplinary Statistical Education and Research (CISER)</a>. I also hold a master's degree in Computer Science from WSU and undergraduate and master's degrees in Statistics from Bangladesh.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Research Interests</h2>
+      <ul class="interest-list">
+        <li>Wildlife disease modeling and ecological data science</li>
+        <li>Graph machine learning and network modeling</li>
+        <li>Generalizability and interpretability in deep learning</li>
+        <li>Time series, spatial, and multivariate statistics</li>
+        <li>Change point detection in complex systems</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Updates from Recent Research</h2>
+      <div class="research-update-media">
+        <img src="assets/gif/gradcam_anim-rvdc-d200.gif" alt="Grad-CAM animation from recent research" />
+      </div>
+    </section>
+  </article>
 
   <footer>
-    © 2025 Mahedi Hasan | Designed for academic use
+    &copy; 2025 Mahedi Hasan | Designed for academic use
   </footer>
 
-  <script>
-    let currentIndex = 0;
-    const images = document.querySelectorAll("#researchCarousel .carousel-image");
-    const totalImages = images.length;
-
-    setInterval(() => {
-      images[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % totalImages;
-
-      setTimeout(() => {
-        images[currentIndex].classList.add("active");
-      }, 100);
-    }, 5000);
-  </script>
+  <script src="assets/js/site-search.js"></script>
 </body>
 </html>
