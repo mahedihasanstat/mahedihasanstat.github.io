@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    html {
+      overflow-y: scroll;
+      scrollbar-gutter: stable;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       margin: 0;
@@ -44,10 +49,17 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.28rem 0.55rem;
     }
 
     nav a:hover {
       text-decoration: underline;
+    }
+
+    nav a.active {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 7px;
+      text-decoration: none;
     }
 
     .site-search {
@@ -146,7 +158,7 @@
 
     .cover-ribbon {
       position: relative;
-      height: 155px;
+      height: 220px;
       overflow: hidden;
       background: #dbeaf5;
     }
@@ -158,6 +170,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 56%;
       border: 0;
       opacity: 0;
       transform: scale(1.03);
@@ -198,8 +211,7 @@
     .profile-summary {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 310px;
-      gap: 1rem;
+      grid-template-columns: minmax(0, 1fr);
       align-items: end;
       padding: 0 1.25rem 1rem;
     }
@@ -209,7 +221,9 @@
     }
 
     .profile-photo-wrap {
-      margin-top: -138px;
+      position: relative;
+      width: 175px;
+      margin-top: -152px;
       margin-bottom: 0.2rem;
       z-index: 2;
     }
@@ -269,7 +283,7 @@
     .profile-link-bar {
       display: flex;
       flex-wrap: wrap;
-      width: min(270px, 100%);
+      width: min(340px, 100%);
       margin-top: 0.65rem;
       margin-left: 0;
       margin-right: auto;
@@ -293,6 +307,15 @@
       border-right: 1px solid #cfe3f4;
     }
 
+    button.profile-link {
+      border-top: 0;
+      border-bottom: 0;
+      border-left: 0;
+      font: inherit;
+      cursor: pointer;
+      background: transparent;
+    }
+
     .profile-link:hover {
       background: #d7ebfb;
       text-decoration: none;
@@ -302,46 +325,90 @@
       border-right: 0;
     }
 
-    .updates-box {
-      margin-top: 0.8rem;
-      padding: 0.65rem 0.8rem;
-      max-height: 112px;
-      overflow-y: auto;
-      background: #f7fbff;
-      border: 1px solid #d7e7f3;
-      border-left: 4px solid #1f77b4;
-      border-radius: 6px;
+    .message-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(16, 36, 52, 0.42);
     }
 
-    .updates-box h2 {
-      margin: 0 0 0.4rem;
+    .message-modal.is-open {
+      display: flex;
+    }
+
+    .message-panel {
+      width: min(440px, 100%);
+      background: #fff;
+      border: 1px solid #cfe3f4;
+      border-radius: 8px;
+      box-shadow: 0 18px 44px rgba(16, 36, 52, 0.22);
+      padding: 1rem;
+    }
+
+    .message-panel h2 {
+      margin: 0 0 0.2rem;
       color: #1f77b4;
-      font-size: 0.98rem;
+      font-size: 1.1rem;
+      line-height: 1.2;
     }
 
-    .updates-box ul {
-      margin: 0;
-      padding-left: 1.1rem;
-      font-size: 0.82rem;
+    .message-note {
+      margin: 0 0 0.8rem;
+      color: #555;
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .message-field {
+      display: grid;
+      gap: 0.25rem;
+      margin-bottom: 0.65rem;
       color: #333;
+      font-size: 0.88rem;
+      font-weight: 700;
     }
 
-    .updates-box li {
-      margin-bottom: 0.25rem;
+    .message-field input,
+    .message-field textarea {
+      width: 100%;
+      border: 1px solid #cfe3f4;
+      border-radius: 6px;
+      padding: 0.55rem 0.6rem;
+      font: inherit;
+      font-weight: 400;
+      line-height: 1.35;
+      resize: vertical;
     }
 
-    .updates-box li:last-child {
-      margin-bottom: 0;
+    .message-field textarea {
+      min-height: 130px;
     }
 
-    .updates-box a {
+    .message-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.55rem;
+      margin-top: 0.85rem;
+    }
+
+    .message-action {
+      border: 1px solid #cfe3f4;
+      border-radius: 6px;
+      padding: 0.52rem 0.8rem;
+      background: #f7fbff;
       color: #1f77b4;
-      font-weight: 600;
-      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .updates-box a:hover {
-      text-decoration: underline;
+    .message-action.primary {
+      background: #1f77b4;
+      border-color: #1f77b4;
+      color: #fff;
     }
 
     .content {
@@ -412,11 +479,11 @@
       margin-top: 3rem;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 768px) {
       nav {
         gap: 0.4rem 1rem;
         padding: 0.8rem 1rem;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
       }
 
       nav a {
@@ -441,7 +508,7 @@
       }
 
       .cover-ribbon {
-        height: 145px;
+        height: 165px;
       }
 
       .profile-summary {
@@ -452,7 +519,7 @@
       }
 
       .profile-photo-wrap {
-        margin-top: -112px;
+        margin-top: -124px;
         margin-bottom: 0.25rem;
       }
 
@@ -466,13 +533,9 @@
       }
 
       .profile-link-bar {
-        width: min(270px, 100%);
+        width: min(340px, 100%);
         margin-left: 0;
         margin-right: auto;
-      }
-
-      .updates-box {
-        margin-top: 0;
       }
 
       .profile-info h1 {
@@ -503,7 +566,7 @@
       }
 
       .cover-ribbon {
-        height: 130px;
+        height: 165px;
       }
 
       .profile-info {
@@ -526,7 +589,7 @@
 </head>
 <body>
   <nav>
-    <a href="index.html">Home</a>
+    <a class="active" aria-current="page" href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
     <a href="resources.html">Open Resources</a>
@@ -540,8 +603,8 @@
   <main class="page">
     <section class="profile-shell" aria-label="Profile overview">
       <div class="cover-ribbon" id="profileRibbon">
-        <img src="assets/images/ai-ml-wildlife-cover.png" alt="AI, machine learning, and wildlife disease modeling cover illustration" class="active" />
-        <div class="cover-credit">Generated with OpenAI image model</div>
+        <img src="assets/images/chatgpt1.png" alt="Mountain shore landscape with birds, wildlife movement, and a reflective natural research setting" class="active" />
+        <div class="cover-credit">AI Generated Image</div>
       </div>
 
       <div class="profile-summary">
@@ -561,24 +624,32 @@
               <a href="https://github.com/mahedihasanstat" target="_blank" class="profile-link">GitHub</a>
               <a href="https://www.linkedin.com/in/mdmahedihasan-statistics/" target="_blank" class="profile-link">LinkedIn</a>
               <a href="assets/files/CV_Mahedi_Hasan.pdf" target="_blank" class="profile-link">CV</a>
+              <button type="button" class="profile-link" id="openMessageModal">Message</button>
             </div>
           </div>
         </div>
-
-        <aside class="updates-box" aria-label="AI and statistics updates">
-          <h2>AI / Stats Updates</h2>
-          <ul>
-            <li><a href="https://arxiv.org/list/stat.ML/recent" target="_blank">arXiv stat.ML</a> and <a href="https://paperswithcode.com/" target="_blank">Papers with Code</a>.</li>
-            <li><a href="https://neurips.cc" target="_blank">NeurIPS</a>, <a href="https://icml.cc" target="_blank">ICML</a>, <a href="https://iclr.cc" target="_blank">ICLR</a>, and <a href="https://www.amstat.org/meetings/joint-statistical-meetings" target="_blank">JSM</a>.</li>
-            <li><a href="https://openai.com/news/" target="_blank">OpenAI News</a> and <a href="https://deepmind.google/discover/blog/" target="_blank">Google DeepMind Blog</a>.</li>
-            <li><a href="https://www.deeplearning.ai/the-batch/" target="_blank">The Batch</a> and <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank">MIT Tech Review AI</a>.</li>
-            <li><a href="https://www.quantamagazine.org/tag/artificial-intelligence/" target="_blank">Quanta AI</a>, <a href="https://spectrum.ieee.org/artificial-intelligence" target="_blank">IEEE Spectrum AI</a>, and <a href="https://www.nature.com/natmachintell/" target="_blank">Nature Machine Intelligence</a>.</li>
-            <li><a href="https://stat.wisc.edu/events/" target="_blank">UW-Madison Statistics</a> seminars and events.</li>
-          </ul>
-        </aside>
       </div>
     </section>
   </main>
+
+  <div class="message-modal" id="messageModal" role="dialog" aria-modal="true" aria-labelledby="messageTitle">
+    <form class="message-panel" id="messageForm">
+      <h2 id="messageTitle">Send a Message</h2>
+      <p class="message-note">This will open your email app with the message addressed to mhasan32@wisc.edu.</p>
+      <label class="message-field">
+        Subject
+        <input id="messageSubject" name="subject" type="text" autocomplete="off" required />
+      </label>
+      <label class="message-field">
+        Message
+        <textarea id="messageBody" name="body" required></textarea>
+      </label>
+      <div class="message-actions">
+        <button type="button" class="message-action" id="closeMessageModal">Cancel</button>
+        <button type="submit" class="message-action primary">Open Email</button>
+      </div>
+    </form>
+  </div>
 
   <article class="content">
     <section class="section about-section">
@@ -619,9 +690,48 @@
   </article>
 
   <footer>
-    &copy; 2025 Mahedi Hasan | Designed for academic use
+    &copy; 2026 Mahedi Hasan | Designed for Academic Use
   </footer>
 
   <script src="assets/js/site-search.js"></script>
+  <script>
+    const messageModal = document.getElementById("messageModal");
+    const openMessageModal = document.getElementById("openMessageModal");
+    const closeMessageModal = document.getElementById("closeMessageModal");
+    const messageForm = document.getElementById("messageForm");
+    const messageSubject = document.getElementById("messageSubject");
+    const messageBody = document.getElementById("messageBody");
+
+    function toggleMessageModal(isOpen) {
+      messageModal.classList.toggle("is-open", isOpen);
+      if (isOpen) {
+        messageSubject.focus();
+      } else {
+        openMessageModal.focus();
+      }
+    }
+
+    openMessageModal.addEventListener("click", () => toggleMessageModal(true));
+    closeMessageModal.addEventListener("click", () => toggleMessageModal(false));
+
+    messageModal.addEventListener("click", (event) => {
+      if (event.target === messageModal) {
+        toggleMessageModal(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && messageModal.classList.contains("is-open")) {
+        toggleMessageModal(false);
+      }
+    });
+
+    messageForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const subject = encodeURIComponent(messageSubject.value.trim());
+      const body = encodeURIComponent(messageBody.value.trim());
+      window.location.href = `mailto:mhasan32@wisc.edu?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>

@@ -4,73 +4,433 @@
   <meta charset="UTF-8" />
   <title>Research | Mahedi Hasan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="assets/css/style.css" />
   <style>
+    html {
+      overflow-y: scroll;
+      scrollbar-gutter: stable;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      padding-top: 70px;
-      padding-bottom: 70px;
+      padding: 0;
       background-color: #fff;
-      color: #222;
+      color: #1b1b1b;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     nav {
       background-color: #1f77b4;
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 2rem;
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 1000;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.28rem 0.55rem;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+    nav a.active {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 7px;
+      text-decoration: none;
+    }
+
+    .site-search {
+      position: relative;
+      width: min(190px, 100%);
+    }
+
+    .site-search label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .site-search input {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.42rem 0.7rem;
+      font: inherit;
+      font-size: 0.92rem;
+    }
+
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      right: 0;
+      width: min(360px, 90vw);
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff;
+      color: #222;
+      border: 1px solid #d7e6f3;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      text-align: left;
+    }
+
+    .search-results.is-visible {
+      display: block;
+    }
+
+    .search-results a,
+    .search-results div {
+      display: block;
+      padding: 0.75rem;
+      color: #222;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: normal;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .search-results a:hover {
+      background: #f4faff;
+      text-decoration: none;
+    }
+
+    .search-results strong {
+      display: block;
+      color: #1f77b4;
+      margin-bottom: 0.2rem;
+    }
+
+    .search-results span {
+      display: block;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    mark.search-highlight {
+      background: #fff2a8;
+      color: inherit;
+      padding: 0 0.12rem;
+      border-radius: 3px;
+    }
+
+    main {
+      width: min(980px, calc(100% - 2rem));
+      margin: 1.4rem auto 0;
     }
 
     h1 {
-      font-size: 2rem;
+      margin: 0 0 0.35rem;
       color: #1f77b4;
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .research-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .research-sidebar {
+      position: sticky;
+      top: 5.2rem;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      background: #f8fbfe;
+      padding: 0.85rem;
+    }
+
+    .research-sidebar h2 {
+      margin: -0.2rem -0.25rem 0.65rem;
+      color: #0f5f95;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #e7f3fb, #f7fbff);
+      border-left: 4px solid #1f77b4;
+      border-bottom: 1px solid #d3e5f2;
+      border-radius: 5px;
+      padding: 0.42rem 0.55rem;
+    }
+
+    .research-sidebar a {
+      display: block;
+      color: #0b6fae;
+      border-radius: 5px;
+      padding: 0.42rem 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .research-sidebar a:hover {
+      background: #e8f4fd;
+      text-decoration: none;
+    }
+
+    .research-content {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .page-banner {
+      position: relative;
+      height: 175px;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #f4faff;
+      box-shadow: 0 2px 8px rgba(31, 119, 180, 0.05);
+    }
+
+    .page-banner img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .page-banner-credit {
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0.45rem;
+      padding: 0.15rem 0.42rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.84);
+      color: #31566e;
+      font-size: 0.68rem;
+      line-height: 1.1;
+    }
+
+    .research-section {
+      background-color: white;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      padding: 0.95rem 1rem;
+      box-shadow: 0 2px 8px rgba(31, 119, 180, 0.05);
+    }
+
+    .research-section h2 {
+      margin: -0.35rem -0.4rem 0.75rem;
+      color: #124e78;
+      font-size: 1.08rem;
+      background: linear-gradient(135deg, #e7f5fb, #f8fcff);
+      border-left: 5px solid #2b8dbf;
+      border-bottom: 1px solid #d3e5f2;
+      border-radius: 6px;
+      padding: 0.5rem 0.65rem;
+    }
+
+    #people h2 {
+      border-left-color: #3a9f83;
+      background: linear-gradient(135deg, #e7f6f1, #fbfffd);
+    }
+
+    #publications h2 {
+      border-left-color: #2b8dbf;
+      background: linear-gradient(135deg, #e4f5fb, #f8fcff);
+    }
+
+    #projects h2 {
+      border-left-color: #c99b37;
+      background: linear-gradient(135deg, #fff6df, #fffdf7);
+    }
+
+    #conference-papers h2 {
+      border-left-color: #8c6fc9;
+      background: linear-gradient(135deg, #f2edff, #fcfbff);
+    }
+
+    .compact-list {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    .research-section h3 {
+      margin: 0.85rem 0 0.25rem;
+      color: #2a4f68;
+      font-size: 0.95rem;
+    }
+
+    .research-section h3:first-of-type {
       margin-top: 0;
     }
 
-    .section {
-      margin-top: 2.5rem;
+    .compact-list li {
+      margin-bottom: 0.58rem;
     }
 
-    .section h2 {
-      font-size: 1.5rem;
-      color: #1f77b4;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
+    .compact-list li:last-child {
+      margin-bottom: 0;
     }
 
-    .section ul {
-      padding-left: 1.5rem;
+    .publication-list {
+      margin: 0;
+      padding-left: 1.15rem;
     }
 
-    .section li {
-      margin-bottom: 0.75rem;
+    .publication-item {
+      margin-bottom: 0.62rem;
+      line-height: 1.38;
+    }
+
+    .publication-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .publication-title {
+      color: inherit;
+      font-weight: inherit;
+    }
+
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #c9dfef;
+      border-radius: 999px;
+      background: #eef7fd;
+      color: #0b6fae;
+      padding: 0.08rem 0.45rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .pub-link:hover {
+      background: #e3f1fb;
+      text-decoration: none;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+    }
+
+    .research-section a {
+      color: #0b6fae;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .research-section a:hover {
+      text-decoration: underline;
+    }
+
+    .project-cards {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1fr);
+      gap: 1rem;
+      border: 1px solid #dce8f2;
+      border-left: 5px solid #1f77b4;
+      border-radius: 7px;
+      padding: 0.75rem;
+      background: #fbfdff;
+    }
+
+    .project-media {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      min-width: 0;
+    }
+
+    .project-media img,
+    .project-media video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+      border: 1px solid #dce8f2;
+      border-radius: 6px;
+      background: #f4faff;
+    }
+
+    .project-media video {
+      object-fit: contain;
+    }
+
+    .project-media figcaption {
+      margin-top: 0.25rem;
+      color: #666;
+      font-size: 0.76rem;
+      line-height: 1.25;
+    }
+
+    .project-details {
+      min-width: 0;
+    }
+
+    .project-details h4 {
+      margin: 0 0 0.3rem;
+      color: #0f5f95;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .project-details p {
+      margin: 0 0 0.5rem;
+      color: #333;
+      line-height: 1.38;
+    }
+
+    .project-meta {
+      display: grid;
+      gap: 0.25rem;
+      margin-top: 0.45rem;
+      font-size: 0.84rem;
+      color: #444;
+    }
+
+    .project-meta div {
+      display: grid;
+      grid-template-columns: 105px minmax(0, 1fr);
+      gap: 0.45rem;
+    }
+
+    .project-meta strong {
+      color: #2a4f68;
+    }
+
+    .text-highlight {
+      font-weight: 700;
+    }
+
+    .status-note {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
     }
 
     footer {
@@ -78,91 +438,265 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      position: fixed;
-      bottom: 0;
       width: 100%;
+      margin-top: 3rem;
     }
 
     @media (max-width: 768px) {
       nav {
-        flex-direction: column;
-        align-items: center;
+        gap: 0.4rem 1rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.92rem;
       }
 
-      .container {
-        padding: 1rem;
+      nav a {
+        padding: 0.2rem 0;
       }
 
-      h1, .section h2 {
+      .site-search {
+        width: min(100%, 420px);
+        order: 10;
+      }
+
+      .search-results {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 420px);
+      }
+
+      main {
+        width: min(980px, calc(100% - 2rem));
+        margin-top: 1rem;
+      }
+
+      h1 {
+        font-size: 1.45rem;
+      }
+
+      .research-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .research-sidebar {
+        position: static;
+      }
+
+      .page-banner {
+        height: 145px;
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-media img {
+        aspect-ratio: 16 / 7;
+      }
+
+      .project-media video {
+        aspect-ratio: 16 / 7;
+      }
+    }
+
+    @media (max-width: 420px) {
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        flex: 1 1 calc(50% - 0.5rem);
         text-align: center;
+      }
+
+      .site-search {
+        flex: 1 1 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Top Navigation -->
   <nav>
     <a href="index.html">Home</a>
-    <a href="research.html">Research</a>
+    <a class="active" aria-current="page" href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
     <a href="resources.html">Open Resources</a>
+    <div class="site-search">
+      <label for="site-search-input">Search this website</label>
+      <input id="site-search-input" type="search" placeholder="Search" autocomplete="off" />
+      <div id="site-search-results" class="search-results" aria-live="polite"></div>
+    </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container">
-    <h1>Research</h1>
+  <main>
+    <div class="research-layout">
+      <aside class="research-sidebar" aria-label="Research sections">
+        <h2>Research</h2>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#conference-papers">Conference Papers</a>
+        <a href="#people">People</a>
+      </aside>
 
-    <!-- Publications -->
-    <div class="section">
-      <h2>Publications</h2>
-      <ul>
-        <li>Kimberly L. M., Kathryn E. S., Elizabeth A. J., Andrew J. S., Anya L. S., Kathryn G., Riley T., <strong>Hasan, M. M.</strong>, & Marc G. B. (2024). Evidence for environmental influences on impulsivity and aggression. <em>Urban Forestry & Urban Greening</em>, 103.</li>
-        <li>Anjum, A., Ahammed, T., <strong>Hasan, M. M.</strong>, Chowdhury, M. A. B., & Uddin, M. J. (2023). Mothers' functional difficulty is affecting the child functioning: Findings from a nationally representative MICS 2019 survey in Bangladesh. <em>Health Science Reports</em>, 6(1).</li>
-        <li>Shahriar, S., Qian, L., Rahman, A., <strong>Hasan, M.</strong>, Kea, S., & Abdullahi, N. M. (2020). Youth skill development loans (YSDL) and good governance in Bangladesh: A logit model analysis. <em>Emerging Markets Finance and Trade</em>, 56(11), 2529–2542. <a href="https://doi.org/10.1080/1540496X.2019.1594769" target="_blank">DOI</a></li>
-        <li>Nury, A. H., Hasan, K., Alam, M. J. B., & <strong>Hasan, M. M.</strong> (2017). Analysis of time series variations of temperature and its forecast in northeastern Bangladesh. <em>International Journal of Global Warming</em>, 13(2), 157–182. <a href="https://doi.org/10.1504/IJGW.2017.086283" target="_blank">DOI</a></li>
-        <li><strong>Hasan, M. M.</strong>, Islam, M. T., Sultana, N. (2017). Effect of climate change on rice production in Bangladesh: A comparative study between time series and stochastic models. <em>BUP Journal</em>, 4(2).</li>
-        <li>Sultana, N., Islam, M. T., & <strong>Hasan, M. M.</strong> (2017). An inter-services comparative study on the diversification of the factors of employee retention in Bangladesh: Application of structural equation modeling. <em>Australian Academy of Business and Economics Review</em>, 3(3), 166–176.</li>
-        <li>Ahmed, M. U., Muzib, M. M., <strong>Hasan, M. M.</strong> (2016). Inflation, inflation uncertainty and relative price variability in Bangladesh. <em>Eurasian Economic Review</em>, 6(3), 389–427.</li>
-      </ul>
+      <div class="research-content">
+        <div class="page-banner" aria-label="Research page banner">
+          <img src="assets/images/research-banner-ai-7.png" alt="AI-generated research banner showing graph networks, deep learning architecture, signal analysis, statistical modeling, interpretability, and wildlife contact networks" />
+          <span class="page-banner-credit">AI Generated Image</span>
+        </div>
+
+        <section id="projects" class="research-section">
+          <h2>Projects</h2>
+          <h3>Current Projects</h3>
+          <div class="project-cards">
+            <article class="project-card">
+              <figure class="project-media">
+                <video src="assets/images/deer-movement-demo.mp4" controls muted playsinline preload="metadata" aria-label="Deer movement animation for wildlife disease modeling"></video>
+                <figcaption>Ecological contact modeling and disease dynamics.</figcaption>
+              </figure>
+              <div class="project-details">
+                <h4>Wildlife Disease Modeling</h4>
+                <p>Developing <span class="text-highlight">statistical and machine learning methods</span> for ecological data, wildlife contact processes, and disease dynamics. This project focuses on connecting <span class="text-highlight">spatial, temporal, and network information</span> to better understand disease risk in wildlife systems.</p>
+                <div class="project-meta">
+                  <div><strong>Funding:</strong><span>NIFA and USGS</span></div>
+                  <div><strong>Affiliation:</strong><span>Postdoctoral Research Associate at <a href="https://stat.wisc.edu/" target="_blank" rel="noopener">UW-Madison Statistics</a></span></div>
+                  <div><strong>Collaborators:</strong><span><a href="https://stat.wisc.edu/staff/zhu-jun/" target="_blank" rel="noopener">Jun Zhu</a> and <a href="https://www.usgs.gov/staff-profiles/daniel-p-walsh" target="_blank" rel="noopener">Dan Walsh</a></span></div>
+                  <div><strong>Status:</strong><span>Current</span></div>
+                  <div><strong>Keywords:</strong><span>Wildlife disease, ecological data science, spatial statistics</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <h3>Past Projects</h3>
+          <div class="project-cards">
+            <article class="project-card">
+              <figure class="project-media">
+                <img src="assets/gif/gradcam_anim-rvdc-d200.gif" alt="Grad-CAM animation for seismic waveform classification" />
+                <img src="assets/images/spectrograms.png" alt="Spectrogram representation for seismic waveform analysis" />
+                <figcaption>Interpretable deep learning and spectrogram-based views of seismic signals.</figcaption>
+              </figure>
+              <div class="project-details">
+                <h4>Seismic Event Discrimination</h4>
+                <p>Building <span class="text-highlight">deep learning models</span> to classify earthquakes and explosions using multi-component waveform data. The work emphasizes both <span class="text-highlight">out-of-distribution generalization</span> and <span class="text-highlight">interpretability</span> so model decisions can be evaluated in scientific context.</p>
+                <div class="project-meta">
+                  <div><strong>Funding:</strong><span>LANL Research Fund</span></div>
+                  <div><strong>Affiliation:</strong><span>Summer Intern at <a href="https://www.lanl.gov/" target="_blank" rel="noopener">Los Alamos National Laboratory</a> in 2024, with continued collaboration through doctoral research at <a href="https://math.wsu.edu" target="_blank" rel="noopener">Washington State University</a></span></div>
+                  <div><strong>Collaborators:</strong><span><a href="https://www.linkedin.com/in/ting-chen-geoscientist/" target="_blank" rel="noopener">Ting Chen</a> and <a href="https://www.linkedin.com/in/carene-larmat-54898224/" target="_blank" rel="noopener">Carene Larmat</a></span></div>
+                  <div><strong>Status:</strong><span>Completed</span></div>
+                  <div><strong>Keywords:</strong><span>Scientific AI, seismic waveforms, interpretability, generalization</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <figure class="project-media">
+                <img src="assets/images/sbm1_net-stream2.png" alt="Change point detection visualization for evolving network structure" />
+                <figcaption>Detecting structural changes in dynamic networks.</figcaption>
+              </figure>
+              <div class="project-details">
+                <h4>Change Point Detection in Networks</h4>
+                <p>Studying <span class="text-highlight">spectral and statistical methods</span> for identifying temporal changes in evolving networks. The goal is to detect meaningful shifts in <span class="text-highlight">latent structure, dimensionality, or connectivity patterns</span> in complex network data.</p>
+                <div class="project-meta">
+                  <div><strong>Funding:</strong><span>To be updated</span></div>
+                  <div><strong>Affiliation:</strong><span><a href="https://math.wsu.edu" target="_blank" rel="noopener">Washington State University</a> / <a href="https://www.vassar.edu/" target="_blank" rel="noopener">Vassar College</a> collaboration</span></div>
+                  <div><strong>Status:</strong><span>Completed</span></div>
+                  <div><strong>Keywords:</strong><span>Change point detection, random dot product graphs, dynamic networks</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <figure class="project-media">
+                <img src="assets/images/directed_classroom_friendship_networks_panel_clean.png" alt="Directed classroom friendship networks for aggregation and fairness analysis" />
+                <figcaption>Aggregation and representation in social networks.</figcaption>
+              </figure>
+              <div class="project-details">
+                <h4>Network Aggregation and Fairness</h4>
+                <p>Modeling aggregation of school-level friendship networks while accounting for <span class="text-highlight">language, identity, and representation risk</span>. This work examines how <span class="text-highlight">network summaries and modeling choices</span> can affect downstream interpretation.</p>
+                <div class="project-meta">
+                  <div><strong>Funding:</strong><span>To be updated</span></div>
+                  <div><strong>Affiliation:</strong><span><a href="https://math.wsu.edu" target="_blank" rel="noopener">Washington State University</a></span></div>
+                  <div><strong>Status:</strong><span>Completed</span></div>
+                  <div><strong>Keywords:</strong><span>Network aggregation, fairness, social networks</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <figure class="project-media">
+                <img src="assets/images/gcn.jpg" alt="Graph neural network and graph representation learning visualization" />
+                <figcaption>Graph representation learning and network embeddings.</figcaption>
+              </figure>
+              <div class="project-details">
+                <h4>Graph Representation Learning</h4>
+                <p>Investigating <span class="text-highlight">embedding and representation learning</span> methods for network data, including stochastic block models and random dot product graphs. The project connects <span class="text-highlight">graph machine learning</span> with statistical network modeling.</p>
+                <div class="project-meta">
+                  <div><strong>Funding:</strong><span>To be updated</span></div>
+                  <div><strong>Affiliation:</strong><span><a href="https://math.wsu.edu" target="_blank" rel="noopener">Washington State University</a></span></div>
+                  <div><strong>Status:</strong><span>Completed</span></div>
+                  <div><strong>Keywords:</strong><span>Graph machine learning, embeddings, statistical networks</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="publications" class="research-section">
+          <h2>Publications</h2>
+          <h3>In Progress</h3>
+          <ul class="publication-list">
+            <li class="publication-item"><span class="publication-title">Improving generalizability of deep learning models for discriminating earthquakes and explosions.</span> <strong>Hasan, M. M.</strong>, et al. Work in progress.</li>
+            <li class="publication-item"><span class="publication-title">Interpretable deep learning model for discriminating earthquakes and explosions.</span> <strong>Hasan, M. M.</strong>, et al. Work in progress.</li>
+            <li class="publication-item"><span class="publication-title">Change point detection for dimensionality in random dot product graphs.</span> <strong>Hasan, M. M.</strong>, et al. Work in progress.</li>
+            <li class="publication-item"><span class="publication-title">Studying social network dynamics: Aggregation challenges and language risk in school friendship networks.</span> <strong>Hasan, M. M.</strong>, et al. Work in progress.</li>
+            <li class="publication-item"><span class="publication-title">Genetic and environmental influences on the relationship between smoking and cannabis co-use and chronic pain: A twin study.</span> Smith, C. L., Avery, A., Ryan, R., Duncan, G. E., Colletto, S., <strong>Hasan, M. M.</strong>, et al. Ready to submit.</li>
+          </ul>
+
+          <h3>Published</h3>
+          <ul class="publication-list">
+            <li class="publication-item"><span class="publication-title">Evidence for environmental influences on impulsivity and aggression.</span> Kimberly L. M., Kathryn E. S., Elizabeth A. J., Andrew J. S., Anya L. S., Kathryn G., Riley T., <strong>Hasan, M. M.</strong>, & Marc G. B. (2024). <em>Urban Forestry & Urban Greening</em>, 103.<div class="publication-links"><a class="pub-link" href="https://doi.org/10.1016/j.ufug.2024.128594" target="_blank" rel="noopener">DOI</a></div></li>
+            <li class="publication-item"><span class="publication-title">Mothers' functional difficulty is affecting the child functioning: Findings from a nationally representative MICS 2019 survey in Bangladesh.</span> Anjum, A., Ahammed, T., <strong>Hasan, M. M.</strong>, Chowdhury, M. A. B., & Uddin, M. J. (2023). <em>Health Science Reports</em>, 6(1).<div class="publication-links"><a class="pub-link" href="https://doi.org/10.1002/hsr2.1023" target="_blank" rel="noopener">DOI</a></div></li>
+            <li class="publication-item"><span class="publication-title">Youth skill development loans (YSDL) and good governance in Bangladesh: A logit model analysis.</span> Shahriar, S., Qian, L., Rahman, A., <strong>Hasan, M.</strong>, Kea, S., & Abdullahi, N. M. (2020). <em>Emerging Markets Finance and Trade</em>, 56(11), 2529-2542.<div class="publication-links"><a class="pub-link" href="https://doi.org/10.1080/1540496X.2019.1594769" target="_blank" rel="noopener">DOI</a></div></li>
+            <li class="publication-item"><span class="publication-title">Analysis of time series variations of temperature and its forecast in northeastern Bangladesh.</span> Nury, A. H., Hasan, K., Alam, M. J. B., & <strong>Hasan, M. M.</strong> (2017). <em>International Journal of Global Warming</em>, 13(2), 157-182.<div class="publication-links"><a class="pub-link" href="https://doi.org/10.1504/IJGW.2017.086283" target="_blank" rel="noopener">DOI</a></div></li>
+            <li class="publication-item"><span class="publication-title">Effect of climate change on rice production in Bangladesh: A comparative study between time series and stochastic models.</span> <strong>Hasan, M. M.</strong>, Islam, M. T., & Sultana, N. (2017). <em>BUP Journal</em>, 4(2).</li>
+            <li class="publication-item"><span class="publication-title">An inter-services comparative study on the diversification of the factors of employee retention in Bangladesh: Application of structural equation modeling.</span> Sultana, N., Islam, M. T., & <strong>Hasan, M. M.</strong> (2017). <em>Australian Academy of Business and Economics Review</em>, 3(3), 166-176.</li>
+            <li class="publication-item"><span class="publication-title">Inflation, inflation uncertainty and relative price variability in Bangladesh.</span> Ahmed, M. U., Muzib, M. M., & <strong>Hasan, M. M.</strong> (2016). <em>Eurasian Economic Review</em>, 6(3), 389-427.<div class="publication-links"><a class="pub-link" href="https://doi.org/10.1007/s40822-016-0055-8" target="_blank" rel="noopener">DOI</a></div></li>
+          </ul>
+        </section>
+
+        <section id="conference-papers" class="research-section">
+          <h2>Conference Papers</h2>
+          <ul class="publication-list">
+            <li class="publication-item"><span class="publication-title">Movement-derived contact networks and latent embeddings for wildlife health modeling and uncertainty quantification.</span> <strong>Hasan, M. M.</strong>, DeFord, D. R., McGahan, I. P., Mandujano Reyes, J. F., Storm, D. J., Zhu, J., & Walsh, D. P. (2026). SIAM UQ-2026 Conference. Minneapolis, Minnesota, USA.</li>
+            <li class="publication-item"><span class="publication-title">Studying social network dynamics: Addressing aggregation challenges and modeling language risk.</span> <strong>Hasan, M. M.</strong> & DeFord, D. (2024). Joint Statistical Meeting. Portland, Oregon, USA.</li>
+            <li class="publication-item"><span class="publication-title">Investigating American optimism: Evidence from 2022 General Social Survey (GSS) data.</span> <strong>Hasan, M. M.</strong>, Kim, W., Carlton-Wargo, J., & Rice, D. (2024). Joint Statistical Meeting. Portland, Oregon, USA.</li>
+            <li class="publication-item"><span class="publication-title">Social network dynamics: Addressing aggregation challenges in school friendship networks.</span> <strong>Hasan, M. M.</strong> & DeFord, D. (2024). SIAM Annual Meeting. Spokane, Washington, USA.</li>
+            <li class="publication-item"><span class="publication-title">Climate change and its impact on agricultural production in Bangladesh: Geo-statistical analysis of spatial and temporal variation.</span> <strong>Hasan, M. M.</strong> (2017). 9th Biennial Conference of the Indian Society for Ecological Economics (INSEE). Kerala, India.</li>
+            <li class="publication-item"><span class="publication-title">Climate change in terms of extreme weather events in Bangladesh: Impacts on economic development.</span> <strong>Hasan, M. M.</strong> & Hossain, M. Z. (2017). 16th Biennial Conference of Bangladesh Statistical Association. Dhaka, Bangladesh.</li>
+            <li class="publication-item"><span class="publication-title">Engendering extremity in the climate of Bangladesh: An observation through maximum and minimum temperature.</span> <strong>Hasan, M. M.</strong> & Hossain, M. Z. (2016). National Conference on Sustainable Development. SUST, Sylhet, Bangladesh.</li>
+            <li class="publication-item"><span class="publication-title">An inter-services comparative study on job satisfaction in Bangladesh: Application of discriminant function analysis and structural equation modeling.</span> <strong>Hasan, M. M.</strong> & Sultana, N. (2016). International Conference on Business Analytics and Big Data. Indian Institute of Management (IIM), Ahmedabad, India.</li>
+            <li class="publication-item"><span class="publication-title">An inter-services comparative study on the diversification of the factors of employee retention in Bangladesh: Application of structural equation modeling.</span> <strong>Hasan, M. M.</strong> & Sultana, N. (2016). International Conference organized by AMDISA. Uttara University, Dhaka, Bangladesh.</li>
+            <li class="publication-item"><span class="publication-title">Regional variation of climate change through drought and trend analysis using temperature and rainfall data.</span> <strong>Hasan, M. M.</strong> & Hossain, M. Z. (2014). Bi-annual Conference of Bangladesh Statistical Association (BSA). Dhaka, Bangladesh.</li>
+            <li class="publication-item"><span class="publication-title">Rainfall variation in Bangladesh: A wavelet transformation analysis.</span> <strong>Hasan, M. M.</strong> & Hossain, M. Z. (2014). Bi-annual Conference of Bangladesh Statistical Association (BSA). Dhaka, Bangladesh.</li>
+          </ul>
+        </section>
+
+        <section id="people" class="research-section">
+          <h2>People</h2>
+          <ul class="compact-list">
+            <li><a href="https://stat.wisc.edu/staff/zhu-jun/" target="_blank" rel="noopener">Professor Jun Zhu</a>, Department of Statistics, University of Wisconsin-Madison.</li>
+            <li><a href="https://www.usgs.gov/staff-profiles/daniel-p-walsh" target="_blank" rel="noopener">Dr. Dan Walsh</a>, U.S. Geological Survey.</li>
+            <li><a href="https://www.vassar.edu/faculty/ddeford" target="_blank" rel="noopener">Dr. Daryl DeFord</a>, Vassar College.</li>
+            <li><a href="https://www.yanyan.pro" target="_blank" rel="noopener">Dr. Yan Yan</a>, <a href="https://math.wsu.edu" target="_blank" rel="noopener">Washington State University</a>.</li>
+            <li><a href="https://www.lanl.gov" target="_blank" rel="noopener">Los Alamos National Laboratory</a>, research collaboration and summer internship.</li>
+          </ul>
+        </section>
+      </div>
     </div>
+  </main>
 
-    <!-- Works in Progress -->
-    <div class="section">
-      <h2>Works in Progress</h2>
-      <ul>
-        <li><em>Improving Generalizability of Deep Learning Models for Discriminating Earthquakes and Explosions</em>. [Work in Progress]</li>
-        <li><em>Interpretable Deep Learning Model for Discriminating Earthquakes and Explosions</em>. [Work in Progress]</li>
-        <li><em>Change Point Detection for Dimensionality in Random Dot Product Graphs</em>. [Work in Progress]</li>
-        <li><em>Studying Social Network Dynamics: Aggregation Challenges and Language Risk in School Friendship Networks</em>. [Work in Progress]</li>
-        <li>Smith, C. L., Avery, A., Ryan, R., Duncan, G. E., Colletto, S., <strong>Hasan, M. M.</strong>, et al. <em>Genetic and Environmental Influences on the Relationship Between Smoking and Cannabis Co-Use and Chronic Pain: A Twin Study</em>. [Ready to Submit]</li>
-      </ul>
-    </div>
-
-    <!-- Projects -->
-    <div class="section">
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Seismic Event Discrimination:</strong> Deep learning models for classifying earthquakes vs explosions using 3-component waveform data.</li>
-        <li><strong>Change Point Detection in Networks:</strong> Spectral and statistical methods for detecting temporal changes in evolving networks.</li>
-        <li><strong>Network Aggregation & Fairness:</strong> Modeling fair aggregation of school-level friendship networks under language and identity risk.</li>
-        <li><strong>Graph Representation Learning:</strong> Embedding and modeling of nodes in stochastic block models and RDPGs.</li>
-      </ul>
-    </div>
-
-    <!-- Collaborations -->
-    <div class="section">
-      <h2>Collaborations</h2>
-      <ul>
-        <li><a href="https://archive.math.wsu.edu/faculty/ddeford/index.php" target="_blank">Dr. Daryl DeFord</a> – WSU Mathematics (Statistical Network Modeling)</li>
-        <li><a href="https://www.yanyan.pro" target="_blank">Dr. Yan Yan</a> – WSU Computer Science (Deep Learning and AI)</li>
-        <li>Earth & Environmental Sciences Division – Los Alamos National Laboratory (Summer 2025)</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Footer -->
   <footer>
-    © 2025 Mahedi Hasan | Designed for academic use
+    &copy; 2026 Mahedi Hasan | Designed for Academic Use
   </footer>
+  <script src="assets/js/site-search.js"></script>
 </body>
 </html>

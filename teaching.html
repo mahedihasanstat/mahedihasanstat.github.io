@@ -4,106 +4,357 @@
   <meta charset="UTF-8" />
   <title>Teaching | Mahedi Hasan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    html {
+      overflow-y: scroll;
+      scrollbar-gutter: stable;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      padding-top: 70px;
-      padding-bottom: 70px;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       background-color: #fff;
-      color: #222;
+      color: #1b1b1b;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     nav {
       background-color: #1f77b4;
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 2rem;
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 1000;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.28rem 0.55rem;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
 
+    nav a.active {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 7px;
+      text-decoration: none;
+    }
+
+    .site-search {
+      position: relative;
+      width: min(190px, 100%);
+    }
+
+    .site-search label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .site-search input {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.42rem 0.7rem;
+      font: inherit;
+      font-size: 0.92rem;
+    }
+
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      right: 0;
+      width: min(360px, 90vw);
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff;
+      color: #222;
+      border: 1px solid #d7e6f3;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      text-align: left;
+    }
+
+    .search-results.is-visible {
+      display: block;
+    }
+
+    .search-results a,
+    .search-results div {
+      display: block;
+      padding: 0.75rem;
+      color: #222;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: normal;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .search-results a:hover {
+      background: #f4faff;
+      text-decoration: none;
+    }
+
+    .search-results strong {
+      display: block;
+      color: #1f77b4;
+      margin-bottom: 0.2rem;
+    }
+
+    .search-results span {
+      display: block;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    mark.search-highlight {
+      background: #fff2a8;
+      color: inherit;
+      padding: 0 0.12rem;
+      border-radius: 3px;
+    }
+
     .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+      width: min(860px, calc(100% - 2rem));
+      margin: 1.4rem auto 0;
+      flex: 1;
     }
 
     h1 {
-      font-size: 2rem;
+      margin: 0 0 0.25rem;
       color: #1f77b4;
-      margin-top: 0;
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .intro {
+      max-width: 820px;
+      margin: 0 0 1rem;
+      color: #333;
+      text-align: justify;
     }
 
     .section {
-      margin-top: 2.5rem;
+      margin-top: 0;
+      background: #fff;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      padding: 0.95rem 1rem;
+      box-shadow: 0 2px 8px rgba(31, 119, 180, 0.05);
     }
 
     .section h2 {
-      font-size: 1.5rem;
-      color: #1f77b4;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
+      margin: -0.35rem -0.4rem 0.75rem;
+      color: #124e78;
+      font-size: 1.08rem;
+      background: linear-gradient(135deg, #e7f5fb, #f8fcff);
+      border-left: 5px solid #2b8dbf;
+      border-bottom: 1px solid #dce8f2;
+      border-radius: 6px;
+      padding: 0.5rem 0.65rem;
     }
 
-    .course {
-      margin-bottom: 2rem;
+    .subsection {
+      margin-top: 1rem;
     }
 
-    .course-title {
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: #333;
+    .subsection:first-of-type {
+      margin-top: 0;
     }
 
-    .course-meta {
-      font-size: 0.95rem;
-      color: #777;
-      margin-bottom: 0.4rem;
+    .subsection h3 {
+      margin: 0 0 0.45rem;
+      color: #2a4f68;
+      font-size: 0.98rem;
+      border-bottom: 1px solid #dce8f2;
+      padding-bottom: 0.25rem;
     }
 
-    .course-links a {
-      display: inline-block;
-      margin-right: 1rem;
-      margin-top: 0.4rem;
-      color: #1f77b4;
-      text-decoration: none;
+    #training-workshops h2 {
+      border-left-color: #3a9f83;
+      background: linear-gradient(135deg, #e7f6f1, #fbfffd);
+    }
+
+    #mentoring h2 {
+      border-left-color: #c99b37;
+      background: linear-gradient(135deg, #fff6df, #fffdf7);
+    }
+
+    #outreach h2 {
+      border-left-color: #8c6fc9;
+      background: linear-gradient(135deg, #f2edff, #fcfbff);
+    }
+
+    .teaching-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .teaching-sidebar {
+      position: sticky;
+      top: 5.2rem;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      background: #f8fbfe;
+      padding: 0.85rem;
+    }
+
+    .teaching-sidebar h2 {
+      margin: -0.2rem -0.25rem 0.65rem;
+      color: #0f5f95;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #e7f3fb, #f7fbff);
+      border-left: 4px solid #1f77b4;
+      border-bottom: 1px solid #d3e5f2;
+      border-radius: 5px;
+      padding: 0.42rem 0.55rem;
+    }
+
+    .teaching-sidebar a {
+      display: block;
+      color: #0b6fae;
+      border-radius: 5px;
+      padding: 0.42rem 0.5rem;
       font-size: 0.9rem;
+      line-height: 1.25;
+      font-weight: 700;
+      text-decoration: none;
     }
 
-    .course-links a:hover {
+    .teaching-sidebar a:hover {
+      background: #e8f4fd;
+      text-decoration: none;
+    }
+
+    .page-banner {
+      position: relative;
+      height: 175px;
+      margin-bottom: 1rem;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #f4faff;
+      box-shadow: 0 2px 8px rgba(31, 119, 180, 0.05);
+    }
+
+    .page-banner img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .page-banner-credit {
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0.45rem;
+      padding: 0.15rem 0.42rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.84);
+      color: #31566e;
+      font-size: 0.68rem;
+      line-height: 1.1;
+    }
+
+    .teaching-content {
+      display: grid;
+      gap: 1rem;
+      min-width: 0;
+    }
+
+    .simple-list {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    .simple-list li {
+      margin-bottom: 0.55rem;
+    }
+
+    .simple-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .course-table-wrap {
+      overflow-x: auto;
+      border: 1px solid #dce8f2;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .course-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+      font-size: 0.8rem;
+    }
+
+    .course-table th,
+    .course-table td {
+      padding: 0.32rem 0.42rem;
+      border-bottom: 1px solid #e6eef5;
+      text-align: left;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .course-table th {
+      background: #f4faff;
+      color: #1f77b4;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .course-table th:nth-child(3),
+    .course-table td:nth-child(3) {
+      width: 42%;
+    }
+
+    .course-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .course-table a {
+      color: #1f77b4;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .course-table a:hover {
       text-decoration: underline;
     }
 
-    .course-links .restricted {
-      display: inline-block;
-      margin-right: 1rem;
-      margin-top: 0.4rem;
-      color: #999;
-      font-size: 0.9rem;
-      cursor: not-allowed;
-    }
-
-    .course-links .restricted:hover {
-      color: #666;
+    .course-level {
+      white-space: nowrap;
     }
 
     footer {
@@ -111,118 +362,237 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      position: fixed;
-      bottom: 0;
       width: 100%;
+      margin-top: auto;
     }
 
     @media (max-width: 768px) {
       nav {
-        flex-direction: column;
-        align-items: center;
+        gap: 0.4rem 1rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.92rem;
+      }
+
+      nav a {
+        padding: 0.2rem 0;
+      }
+
+      .site-search {
+        width: min(100%, 420px);
+        order: 10;
+      }
+
+      .search-results {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 420px);
       }
 
       .container {
-        padding: 1rem;
+        width: min(860px, calc(100% - 2rem));
+        margin-top: 1rem;
       }
 
-      h1, .section h2 {
+      .teaching-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .teaching-sidebar {
+        position: static;
+      }
+
+      .page-banner {
+        height: 145px;
+      }
+
+      .course-table {
+        min-width: 640px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        flex: 1 1 calc(50% - 0.5rem);
         text-align: center;
+      }
+
+      .site-search {
+        flex: 1 1 100%;
+      }
+
+      h1 {
+        font-size: 1.45rem;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Top Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
-    <a href="teaching.html">Teaching</a>
+    <a class="active" aria-current="page" href="teaching.html">Teaching</a>
     <a href="resources.html">Open Resources</a>
+    <div class="site-search">
+      <label for="site-search-input">Search this website</label>
+      <input id="site-search-input" type="search" placeholder="Search" autocomplete="off" />
+      <div id="site-search-results" class="search-results" aria-live="polite"></div>
+    </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container">
-    <h1>Teaching</h1>
+  <main class="container">
+    <div class="teaching-layout">
+      <aside class="teaching-sidebar" aria-label="Teaching sections">
+        <h2>Teaching and Outreach</h2>
+        <a href="#teaching">Teaching</a>
+        <a href="#training-workshops">Training and Workshops</a>
+        <a href="#mentoring">Mentoring</a>
+        <a href="#outreach">Outreach</a>
+      </aside>
 
-    <!-- Instructor Roles -->
-    <div class="section">
-      <h2>Courses Taught (Instructor)</h2>
-
-      <div class="course">
-        <div class="course-title">Math 216: Discrete Mathematics</div>
-        <div class="course-meta">Fall 2023 – Washington State University</div>
-        <div class="course-links">
-          <a href="assets/files/math216_syllabus.pdf" target="_blank">📄 Syllabus</a>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Lecture Notes</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Homework</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Exams</span>
+      <div class="teaching-content">
+        <div class="page-banner" aria-label="Teaching page banner">
+          <img src="assets/images/teaching-banner-ai-13-classfix.png" alt="AI-generated teaching banner showing human data, statistical computing, descriptive statistics, prediction, classification, clustering, mixed models, Bayesian modeling, diagnostics, interpretability, and classroom discussion" />
+          <span class="page-banner-credit">AI Generated Image</span>
         </div>
-      </div>
 
-      <div class="course">
-        <div class="course-title">Stat 212: Introduction to Statistical Methods</div>
-        <div class="course-meta">Spring 2023 – Washington State University</div>
-        <div class="course-links">
-          <a href="assets/files/stat212_syllabus.pdf" target="_blank">📄 Syllabus</a>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Lecture Notes</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Homework</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Exams</span>
-        </div>
-      </div>
+        <section id="teaching" class="section">
+          <h2>Teaching</h2>
+          <div class="subsection">
+            <h3>Courses Taught</h3>
+            <div class="course-table-wrap">
+              <table class="course-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Affiliation</th>
+              <th>Course Name</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Spring 2026</td>
+              <td>UW-Madison</td>
+              <td><a href="courses/stat679-spatial-statistics-for-lattice-data.html">STAT 679: Spatial Statistics for Lattice Data</a></td>
+              <td class="course-level">Graduate (MS)</td>
+            </tr>
+            <tr>
+              <td>Fall 2022</td>
+              <td>WSU</td>
+              <td><a href="courses/stat419-introduction-to-multivariate-statistics.html">STAT 419: Introduction to Multivariate Statistics</a></td>
+              <td class="course-level">Upper-division undergraduate</td>
+            </tr>
+            <tr>
+              <td>Spring 2022</td>
+              <td>WSU</td>
+              <td><a href="courses/math216-discrete-mathematics.html">Math 216: Discrete Mathematics</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Fall 2021, Spring 2020</td>
+              <td>WSU</td>
+              <td><a href="courses/stat212-introduction-to-statistical-methods.html">STAT 212: Introduction to Statistical Methods</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Spring 2020, 2021</td>
+              <td>WSU</td>
+              <td><a href="courses/math172-calculus-ii.html">Math 172: Engineering Calculus II</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Spring 2020</td>
+              <td>WSU</td>
+              <td><a href="courses/math273-calculus-iii.html">Math 273: Calculus III</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Fall 2019</td>
+              <td>WSU</td>
+              <td><a href="courses/math171-calculus-i.html">Math 171: Calculus I</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Spring 2016, 2017, 2018, 2019</td>
+              <td>BUP</td>
+              <td><a href="courses/business-statistics.html">ALD-3509: Business Statistics</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Spring 2018, 2019; Fall 2016</td>
+              <td>BUP</td>
+              <td><a href="courses/econometrics.html">ECON-4802: Econometrics</a></td>
+              <td class="course-level">Graduate / Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Fall 2016, 2017, 2018</td>
+              <td>BUP</td>
+              <td><a href="courses/research-methodology.html">BUS/ALD-3610: Business Research Methodology</a></td>
+              <td class="course-level">Graduate / Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Spring 2018</td>
+              <td>BUP</td>
+              <td><a href="courses/software-application-for-economic-analysis.html">ECON-4703: Software Application for Economic Analysis</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Fall 2017</td>
+              <td>BUP</td>
+              <td><a href="courses/statistics-for-development-studies.html">Statistics for Development Studies</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Fall 2017</td>
+              <td>BUP</td>
+              <td><a href="courses/business-mathematics.html">ALD-1205: Business Mathematics</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+            <tr>
+              <td>Fall 2015</td>
+              <td>BUP</td>
+              <td><a href="courses/statistics-for-economics-i.html">ECON-104: Statistics for Economics I</a></td>
+              <td class="course-level">Undergraduate</td>
+            </tr>
+          </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
 
-      <div class="course">
-        <div class="course-title">Stat 419: Introduction to Multivariate Statistics</div>
-        <div class="course-meta">Fall 2022 – Washington State University</div>
-        <div class="course-links">
-          <a href="assets/files/stat419_syllabus.pdf" target="_blank">📄 Syllabus</a>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Lecture Notes</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Homework</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Exams</span>
-        </div>
-      </div>
+        <section id="training-workshops" class="section">
+          <h2>Training and Workshops</h2>
+          <ul class="simple-list">
+            <li>Workshops, data camps, guest sessions, and training activities will be listed here.</li>
+          </ul>
+        </section>
 
-      <div class="course">
-        <div class="course-title">Stat 412: Statistical Methods for Research</div>
-        <div class="course-meta">Spring 2022 – Washington State University</div>
-        <div class="course-links">
-          <a href="assets/files/stat412_syllabus.pdf" target="_blank">📄 Syllabus</a>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Lecture Notes</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Homework</span>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Exams</span>
-        </div>
+        <section id="mentoring" class="section">
+          <h2>Mentoring</h2>
+          <ul class="simple-list">
+            <li>Student mentoring and supervision activities will be listed here.</li>
+          </ul>
+        </section>
+
+        <section id="outreach" class="section">
+          <h2>Outreach</h2>
+          <ul class="simple-list">
+            <li>Outreach activities and community-facing educational contributions will be listed here.</li>
+          </ul>
+        </section>
       </div>
     </div>
+  </main>
 
-    <!-- Teaching Assistant Roles -->
-    <div class="section">
-      <h2>Courses Assisted (Teaching Assistant)</h2>
-
-      <div class="course">
-        <div class="course-title">Math 171: Calculus I</div>
-        <div class="course-meta">Fall 2021 – Washington State University</div>
-        <div class="course-links">
-          <a href="assets/files/math171_syllabus.pdf" target="_blank">📄 Syllabus</a>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Lecture Notes</span>
-        </div>
-      </div>
-
-      <div class="course">
-        <div class="course-title">Math 172: Calculus II</div>
-        <div class="course-meta">Spring 2021 – Washington State University</div>
-        <div class="course-links">
-          <a href="assets/files/math172_syllabus.pdf" target="_blank">📄 Syllabus</a>
-          <span class="restricted" title="Restricted access – contact instructor">🔒 Lecture Notes</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
   <footer>
-    © 2025 Mahedi Hasan | Designed for academic use
+    &copy; 2026 Mahedi Hasan | Designed for Academic Use
   </footer>
 
+  <script src="assets/js/site-search.js"></script>
 </body>
 </html>

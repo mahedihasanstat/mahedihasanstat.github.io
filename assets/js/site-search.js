@@ -14,9 +14,10 @@
   }
 
   let indexPromise;
+  const siteRoot = input.dataset.siteRoot || "";
 
   function searchUrl(url, query) {
-    return `${pagePath(url)}?search=${encodeURIComponent(query)}`;
+    return `${url}?search=${encodeURIComponent(query)}`;
   }
 
   function pagePath(url) {
@@ -34,16 +35,16 @@
     if (!indexPromise) {
       indexPromise = Promise.all(
         pages.map((page) =>
-          fetch(page.url)
+          fetch(siteRoot + page.url)
             .then((response) => response.text())
             .then((html) => ({
               title: page.title,
-              url: pagePath(page.url),
+              url: siteRoot + page.url,
               text: cleanText(html)
             }))
             .catch(() => ({
               title: page.title,
-              url: pagePath(page.url),
+              url: siteRoot + page.url,
               text: ""
             }))
         )
@@ -163,7 +164,7 @@
       .slice(0, 6)
       .map(
         (match) =>
-          `<a href="${searchUrl(match.url.split("/").pop(), query)}"><strong>${escapeHtml(match.title)}</strong><span>${escapeHtml(snippet(match.text, query))}</span></a>`
+          `<a href="${searchUrl(match.url, query)}"><strong>${escapeHtml(match.title)}</strong><span>${escapeHtml(snippet(match.text, query))}</span></a>`
       )
       .join("");
     results.classList.add("is-visible");

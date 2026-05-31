@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teaching | Mahedi Hasan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #1b1b1b;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    nav {
+      background-color: #1f77b4;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      font-size: 1.05rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .site-search {
+      position: relative;
+      width: min(190px, 100%);
+    }
+
+    .site-search label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .site-search input {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.42rem 0.7rem;
+      font: inherit;
+      font-size: 0.92rem;
+    }
+
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      right: 0;
+      width: min(360px, 90vw);
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff;
+      color: #222;
+      border: 1px solid #d7e6f3;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      text-align: left;
+    }
+
+    .search-results.is-visible {
+      display: block;
+    }
+
+    .search-results a,
+    .search-results div {
+      display: block;
+      padding: 0.75rem;
+      color: #222;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: normal;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .search-results a:hover {
+      background: #f4faff;
+      text-decoration: none;
+    }
+
+    .search-results strong {
+      display: block;
+      color: #1f77b4;
+      margin-bottom: 0.2rem;
+    }
+
+    .search-results span {
+      display: block;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    mark.search-highlight {
+      background: #fff2a8;
+      color: inherit;
+      padding: 0 0.12rem;
+      border-radius: 3px;
+    }
+
+    .container {
+      width: min(860px, calc(100% - 2rem));
+      margin: 1.4rem auto 0;
+    }
+
+    h1 {
+      margin: 0 0 0.25rem;
+      color: #1f77b4;
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .intro {
+      max-width: 820px;
+      margin: 0 0 1rem;
+      color: #333;
+      text-align: justify;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .summary-item {
+      padding: 0.65rem 0.75rem;
+      background: #f7fbff;
+      border: 1px solid #d7e7f3;
+      border-radius: 6px;
+    }
+
+    .summary-item strong {
+      display: block;
+      color: #1f77b4;
+      margin-bottom: 0.12rem;
+      font-size: 0.95rem;
+    }
+
+    .summary-item span {
+      color: #444;
+      font-size: 0.88rem;
+    }
+
+    .section {
+      margin-top: 1.25rem;
+    }
+
+    .section h2 {
+      margin: 0 0 0.5rem;
+      color: #1f77b4;
+      font-size: 1.18rem;
+      border-bottom: 1px solid #dce8f2;
+      padding-bottom: 0.28rem;
+    }
+
+    .course-list {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .course {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.5rem 1rem;
+      align-items: baseline;
+      padding: 0.62rem 0.75rem;
+      border: 1px solid #e2edf6;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .course-title {
+      font-weight: 700;
+      color: #222;
+    }
+
+    .course-meta {
+      color: #666;
+      font-size: 0.88rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .course-note {
+      grid-column: 1 / -1;
+      color: #555;
+      font-size: 0.86rem;
+    }
+
+    footer {
+      background-color: #1f77b4;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      width: 100%;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        gap: 0.4rem 1rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      nav a {
+        padding: 0.2rem 0;
+      }
+
+      .site-search {
+        width: min(100%, 420px);
+        order: 10;
+      }
+
+      .search-results {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 420px);
+      }
+
+      .container {
+        width: min(860px, calc(100% - 2rem));
+        margin-top: 1rem;
+      }
+
+      .summary-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .course {
+        grid-template-columns: 1fr;
+      }
+
+      .course-meta {
+        text-align: left;
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 420px) {
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        flex: 1 1 calc(50% - 0.5rem);
+        text-align: center;
+      }
+
+      .site-search {
+        flex: 1 1 100%;
+      }
+
+      h1 {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="resources.html">Open Resources</a>
+    <div class="site-search">
+      <label for="site-search-input">Search this website</label>
+      <input id="site-search-input" type="search" placeholder="Search" autocomplete="off" />
+      <div id="site-search-results" class="search-results" aria-live="polite"></div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Teaching</h1>
+    <p class="intro">
+      I have taught and assisted undergraduate courses in statistics and mathematics at Washington State University, including introductory statistics, statistical methods for research, multivariate statistics, discrete mathematics, and calculus. My teaching emphasizes clear statistical reasoning, reproducible problem solving, and connecting mathematical ideas to real data.
+    </p>
+
+    <div class="summary-strip" aria-label="Teaching summary">
+      <div class="summary-item">
+        <strong>Recognition</strong>
+        <span>Graduate Teaching Excellence Award, WSU, 2023</span>
+      </div>
+      <div class="summary-item">
+        <strong>Levels</strong>
+        <span>Lower- and upper-division undergraduate courses</span>
+      </div>
+      <div class="summary-item">
+        <strong>Areas</strong>
+        <span>Statistics, mathematics, data analysis, and modeling</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Courses Taught as Instructor</h2>
+      <div class="course-list">
+        <div class="course">
+          <div class="course-title">Math 216: Discrete Mathematics</div>
+          <div class="course-meta">Fall 2023 | Washington State University</div>
+          <div class="course-note">Logic, proof techniques, combinatorics, graph theory, and discrete structures.</div>
+        </div>
+        <div class="course">
+          <div class="course-title">Stat 212: Introduction to Statistical Methods</div>
+          <div class="course-meta">Spring 2023 | Washington State University</div>
+          <div class="course-note">Statistical thinking, exploratory analysis, inference, regression, and applied data examples.</div>
+        </div>
+        <div class="course">
+          <div class="course-title">Stat 419: Introduction to Multivariate Statistics</div>
+          <div class="course-meta">Fall 2022 | Washington State University</div>
+          <div class="course-note">Multivariate data, dimension reduction, classification, clustering, and applied statistical modeling.</div>
+        </div>
+        <div class="course">
+          <div class="course-title">Stat 412: Statistical Methods for Research</div>
+          <div class="course-meta">Spring 2022 | Washington State University</div>
+          <div class="course-note">Research-focused statistical methods, study design, estimation, hypothesis testing, and regression.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Courses Assisted as Teaching Assistant</h2>
+      <div class="course-list">
+        <div class="course">
+          <div class="course-title">Math 171: Calculus I</div>
+          <div class="course-meta">Fall 2021 | Washington State University</div>
+          <div class="course-note">Supported instruction, grading, office hours, and student problem-solving.</div>
+        </div>
+        <div class="course">
+          <div class="course-title">Math 172: Calculus II</div>
+          <div class="course-meta">Spring 2021 | Washington State University</div>
+          <div class="course-note">Supported instruction, grading, office hours, and recitation-style learning.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Mahedi Hasan | Designed for Academic Use
+  </footer>
+
+  <script src="assets/js/site-search.js"></script>
+</body>
+</html>

@@ -4,89 +4,488 @@
   <meta charset="UTF-8" />
   <title>Open Resources | Mahedi Hasan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    html {
+      overflow-y: scroll;
+      scrollbar-gutter: stable;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      padding-top: 70px;
-      padding-bottom: 70px;
-      background-color: #f9f9f9;
-      color: #222;
+      padding: 0;
+      background-color: #fff;
+      color: #1b1b1b;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     nav {
       background-color: #1f77b4;
       color: white;
-      padding: 1rem 2rem;
+      padding: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 2rem;
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       z-index: 1000;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.28rem 0.55rem;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
 
-    h1 {
-      text-align: center;
-      color: #1f77b4;
-      font-size: 2rem;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    section {
-      background-color: white;
-      border-radius: 8px;
-      padding: 1rem 1.5rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    section h2 {
-      font-size: 1.3rem;
-      color: #1f77b4;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
-    }
-
-    section ul {
-      list-style-type: disc;
-      padding-left: 1.2rem;
-    }
-
-    section li {
-      margin-bottom: 0.8rem;
-    }
-
-    section a {
-      color: #1f77b4;
-      font-weight: 500;
+    nav a.active {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 7px;
       text-decoration: none;
     }
 
-    section a:hover {
+    .site-search {
+      position: relative;
+      width: min(190px, 100%);
+    }
+
+    .site-search label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .site-search input {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.42rem 0.7rem;
+      font: inherit;
+      font-size: 0.92rem;
+    }
+
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      right: 0;
+      width: min(360px, 90vw);
+      max-height: 320px;
+      overflow-y: auto;
+      background: #fff;
+      color: #222;
+      border: 1px solid #d7e6f3;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      text-align: left;
+    }
+
+    .search-results.is-visible {
+      display: block;
+    }
+
+    .search-results a,
+    .search-results div {
+      display: block;
+      padding: 0.75rem;
+      color: #222;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: normal;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .search-results a:hover {
+      background: #f4faff;
+      text-decoration: none;
+    }
+
+    .search-results strong {
+      display: block;
+      color: #1f77b4;
+      margin-bottom: 0.2rem;
+    }
+
+    .search-results span {
+      display: block;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    mark.search-highlight {
+      background: #fff2a8;
+      color: inherit;
+      padding: 0 0.12rem;
+      border-radius: 3px;
+    }
+
+    main {
+      width: min(860px, calc(100% - 2rem));
+      margin: 1.4rem auto 0;
+    }
+
+    h1 {
+      margin: 0 0 0.35rem;
+      color: #1f77b4;
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .page-intro {
+      max-width: 820px;
+      margin: 0 0 1rem;
+      color: #333;
+      font-size: 0.96rem;
+      text-align: justify;
+    }
+
+    .resource-disclaimer {
+      max-width: 820px;
+      margin: 0 0 0.55rem;
+      color: #333;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .resource-disclaimer strong {
+      color: #c62828;
+      font-weight: 700;
+    }
+
+    .resource-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .resource-sidebar {
+      position: sticky;
+      top: 5.2rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .resource-menu,
+    .updates-box {
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      background: #f8fbfe;
+      padding: 0.85rem;
+    }
+
+    .resource-menu h2,
+    .updates-box h2 {
+      margin: -0.2rem -0.25rem 0.65rem;
+      color: #0f5f95;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #e7f3fb, #f7fbff);
+      border-left: 4px solid #1f77b4;
+      border-bottom: 1px solid #d3e5f2;
+      border-radius: 5px;
+      padding: 0.42rem 0.55rem;
+    }
+
+    .resource-menu a {
+      display: block;
+      color: #0b6fae;
+      border-radius: 5px;
+      padding: 0.42rem 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .resource-menu a:hover {
+      background: #e8f4fd;
+      text-decoration: none;
+    }
+
+    .updates-box {
+      max-height: 170px;
+      overflow-y: auto;
+      background: #f7fbff;
+      border-left: 4px solid #1f77b4;
+      padding: 0.65rem 0.75rem;
+    }
+
+    .updates-box h2 {
+      font-size: 0.95rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .updates-box ul {
+      margin: 0;
+      padding-left: 1.05rem;
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+
+    .updates-box li {
+      margin-bottom: 0.35rem;
+    }
+
+    .updates-box li:last-child {
+      margin-bottom: 0;
+    }
+
+    .updates-box a {
+      color: #0b6fae;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .updates-box a:hover {
       text-decoration: underline;
+    }
+
+    .resource-content {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .resource-section {
+      background-color: white;
+      border: 1px solid #dce8f2;
+      border-radius: 7px;
+      padding: 0.95rem 1rem;
+      box-shadow: 0 2px 8px rgba(31, 119, 180, 0.05);
+    }
+
+    .resource-section h2 {
+      margin: -0.35rem -0.4rem 0.75rem;
+      color: #124e78;
+      font-size: 1.08rem;
+      background: linear-gradient(135deg, #e7f5fb, #f8fcff);
+      border-left: 5px solid #2b8dbf;
+      border-bottom: 1px solid #d3e5f2;
+      border-radius: 6px;
+      padding: 0.5rem 0.65rem;
+    }
+
+    #datasets h2 {
+      border-left-color: #2b8dbf;
+      background: linear-gradient(135deg, #e4f5fb, #f8fcff);
+    }
+
+    #courses h2 {
+      border-left-color: #6f7fd6;
+      background: linear-gradient(135deg, #edf0ff, #fbfcff);
+    }
+
+    #conferences h2 {
+      border-left-color: #3a9f83;
+      background: linear-gradient(135deg, #e7f6f1, #fbfffd);
+    }
+
+    #jobs h2 {
+      border-left-color: #c99b37;
+      background: linear-gradient(135deg, #fff6df, #fffdf7);
+    }
+
+    .resource-section h3 {
+      margin: 0.95rem 0 0.28rem;
+      color: #2a4f68;
+      font-size: 0.95rem;
+      letter-spacing: 0;
+    }
+
+    .resource-section h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .resource-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .resource-list li {
+      margin: 0;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid #edf3f8;
+    }
+
+    .resource-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .resource-list a {
+      color: #0b6fae;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .resource-list a:hover {
+      text-decoration: underline;
+    }
+
+    .resource-list span {
+      display: block;
+      margin-top: 0.1rem;
+      color: #444;
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
+    .resource-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.35rem 0 0.2rem;
+      font-size: 0.92rem;
+    }
+
+    .resource-table th,
+    .resource-table td {
+      border-bottom: 1px solid #edf3f8;
+      padding: 0.46rem 0.35rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .resource-table th {
+      color: #1f77b4;
+      font-size: 0.84rem;
+      font-weight: 700;
+      background: #f7fbfe;
+    }
+
+    .resource-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .resource-table a {
+      color: #0b6fae;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .resource-table a:hover {
+      text-decoration: underline;
+    }
+
+    .resource-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.24rem;
+    }
+
+    .resource-tag {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #eef7fd;
+      color: #246b96;
+      padding: 0.12rem 0.45rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 0.42rem;
+      margin: 0.35rem 0 0.25rem;
+    }
+
+    .source-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr);
+      align-items: stretch;
+      text-decoration: none;
+      border: 1px solid #bfd8e8;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #f7fbfd;
+      box-shadow: 0 1px 2px rgba(31, 119, 180, 0.05);
+    }
+
+    .source-row:hover {
+      border-color: #78acd0;
+      box-shadow: 0 2px 8px rgba(31, 119, 180, 0.14);
+      text-decoration: none;
+    }
+
+    .source-name,
+    .source-desc {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      padding: 0.34rem 0.55rem;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .source-name {
+      background: linear-gradient(135deg, #155b8d, #0f3f64);
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 700;
+      border-left: 4px solid #7bc6d6;
+    }
+
+    .source-list.global .source-name {
+      border-left-color: #7bc6d6;
+    }
+
+    .source-list.food .source-name {
+      border-left-color: #80b96f;
+    }
+
+    .source-list.climate .source-name {
+      border-left-color: #69a7df;
+    }
+
+    .source-list.ecology .source-name {
+      border-left-color: #58a76d;
+    }
+
+    .source-list.economic .source-name {
+      border-left-color: #c9a54b;
+    }
+
+    .source-list.courses .source-name {
+      border-left-color: #8ca7e8;
+    }
+
+    .source-list.ai .source-name {
+      border-left-color: #9d89d9;
+    }
+
+    .source-list.conference .source-name {
+      border-left-color: #5fb4c2;
+    }
+
+    .source-list.jobs .source-name {
+      border-left-color: #d6a85a;
+    }
+
+    .source-desc {
+      background: linear-gradient(135deg, #eef8fc, #f8fcff);
+      color: #255f83;
+      font-size: 0.84rem;
+      font-weight: 600;
     }
 
     footer {
@@ -94,85 +493,229 @@
       color: white;
       text-align: center;
       padding: 1rem;
-      position: fixed;
-      bottom: 0;
       width: 100%;
+      margin-top: 3rem;
     }
 
     @media (max-width: 768px) {
       nav {
-        flex-direction: column;
-        align-items: center;
+        gap: 0.4rem 1rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.92rem;
       }
 
-      .container {
-        padding: 1rem;
-        grid-template-columns: 1fr;
+      nav a {
+        padding: 0.2rem 0;
+      }
+
+      .site-search {
+        width: min(100%, 420px);
+        order: 10;
+      }
+
+      .search-results {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(92vw, 420px);
+      }
+
+      main {
+        width: min(860px, calc(100% - 2rem));
+        margin-top: 1rem;
       }
 
       h1 {
-        font-size: 1.6rem;
+        font-size: 1.45rem;
+      }
+
+      .resource-layout {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+
+      .resource-sidebar {
+        position: static;
+      }
+
+      .source-row {
+        grid-template-columns: minmax(130px, 0.38fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 420px) {
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        flex: 1 1 calc(50% - 0.5rem);
+        text-align: center;
+      }
+
+      .site-search {
+        flex: 1 1 100%;
+      }
+
+      .source-row {
+        grid-template-columns: 1fr;
+      }
+
+      .source-name,
+      .source-desc {
+        white-space: normal;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
-    <a href="resources.html">Open Resources</a>
+    <a class="active" aria-current="page" href="resources.html">Open Resources</a>
+    <div class="site-search">
+      <label for="site-search-input">Search this website</label>
+      <input id="site-search-input" type="search" placeholder="Search" autocomplete="off" />
+      <div id="site-search-results" class="search-results" aria-live="polite"></div>
+    </div>
   </nav>
 
-  <!-- Page Title -->
-  <h1>Open Resources</h1>
+  <main>
+    <p class="resource-disclaimer">
+      <strong>Disclaimer:</strong> This educational compilation shares public resources for reference; any breach of information is unintentional, and I shall correct it upon notification.
+    </p>
+    <p class="page-intro">
+      A curated collection of public resources for learning, teaching, research, computation, and professional development in statistics, data science, machine learning, and scientific AI.
+    </p>
 
-  <!-- 3-Column Layout -->
-  <div class="container">
-    
-    <!-- Left Column: Open Learning Materials -->
-    <section>
-      <h2>Open Learning Materials</h2>
-      <ul>
-        <li><a href="https://stats.idre.ucla.edu/" target="_blank">UCLA Statistics Tutorials</a> – Practical guides for R, Stata, SAS, and more.</li>
-        <li><a href="https://seeing-theory.brown.edu/" target="_blank">Seeing Theory</a> – Visual explanation of probability and statistics.</li>
-        <li><a href="https://bookdown.org/" target="_blank">Bookdown</a> – Learn data science and statistics through open books.</li>
-        <li><a href="https://openintro.org" target="_blank">OpenIntro</a> – Free textbooks for introductory statistics courses.</li>
-        <li><a href="https://github.com/mahedihasanstat" target="_blank">GitHub – Mahedi Hasan</a> – Open notebooks, slides, and code.</li>
-      </ul>
-    </section>
+    <div class="resource-layout">
+      <aside class="resource-sidebar" aria-label="Open resource categories">
+        <div class="resource-menu">
+          <h2>Resource List</h2>
+          <a href="#datasets">Open Datasets</a>
+          <a href="#courses">Open Courses</a>
+          <a href="#conferences">Conferences</a>
+          <a href="#jobs">Jobs and Internships</a>
+        </div>
 
-    <!-- Center Column: Workshops & Seminars -->
-    <section>
-      <h2>Workshops & Seminars</h2>
-      <ul>
-        <li><strong>Data Literacy Workshop – WA Tribal School</strong><br>Introduced school students to data through games and charts.</li>
-        <li><strong>OOD Generalization Seminar – LANL (Summer 2025)</strong><br>Shared findings on deep learning for seismic classification.</li>
-        <li><strong>Student Workshop – Statistical Modeling in R</strong><br>Hands-on seminar on regression, ANOVA, and visualization in R.</li>
-        <li><strong>Guest Talks & Panels</strong><br>Occasional speaker on AI, career paths, and statistical modeling.</li>
-      </ul>
-    </section>
+        <div class="updates-box" aria-label="AI and statistics updates">
+          <h2>AI / Stats Updates</h2>
+          <ul>
+            <li><a href="https://arxiv.org/list/stat.ML/recent" target="_blank" rel="noopener">arXiv stat.ML</a> and <a href="https://paperswithcode.com/" target="_blank" rel="noopener">Papers with Code</a>.</li>
+            <li><a href="https://neurips.cc" target="_blank" rel="noopener">NeurIPS</a>, <a href="https://icml.cc" target="_blank" rel="noopener">ICML</a>, <a href="https://iclr.cc" target="_blank" rel="noopener">ICLR</a>, and <a href="https://www.amstat.org/meetings/joint-statistical-meetings" target="_blank" rel="noopener">JSM</a>.</li>
+            <li><a href="https://openai.com/news/" target="_blank" rel="noopener">OpenAI News</a> and <a href="https://deepmind.google/discover/blog/" target="_blank" rel="noopener">Google DeepMind Blog</a>.</li>
+            <li><a href="https://www.deeplearning.ai/the-batch/" target="_blank" rel="noopener">The Batch</a> and <a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank" rel="noopener">MIT Tech Review AI</a>.</li>
+            <li><a href="https://www.quantamagazine.org/tag/artificial-intelligence/" target="_blank" rel="noopener">Quanta AI</a>, <a href="https://spectrum.ieee.org/artificial-intelligence" target="_blank" rel="noopener">IEEE Spectrum AI</a>, and <a href="https://www.nature.com/natmachintell/" target="_blank" rel="noopener">Nature Machine Intelligence</a>.</li>
+            <li><a href="https://stat.wisc.edu/events/" target="_blank" rel="noopener">UW-Madison Statistics</a> seminars and events.</li>
+          </ul>
+        </div>
+      </aside>
 
-    <!-- Right Column: Career Development -->
-    <section>
-      <h2>Career Development</h2>
-      <ul>
-        <li><a href="https://www.coursera.org/career-academy" target="_blank">Coursera Career Academy</a> – Career-focused ML and data science pathways.</li>
-        <li><a href="https://chroniclevitae.com/job_search/new" target="_blank">Chronicle Vitae</a> – Academic jobs and professional guidance.</li>
-        <li><a href="https://careercenter.wsu.edu/" target="_blank">WSU Career Center</a> – Career services and mentorship for students and alumni.</li>
-        <li><a href="https://www.pathwaystoscience.org/" target="_blank">Pathways to Science</a> – STEM funding and internship opportunities.</li>
-        <li><a href="https://datajobs.com/" target="_blank">DataJobs</a> – Portal for jobs in data science and analytics.</li>
-      </ul>
-    </section>
+      <div class="resource-content">
+        <section id="datasets" class="resource-section">
+          <h2>Open Datasets</h2>
+          <h3>Global organizations and development data</h3>
+          <div class="source-list global">
+            <a class="source-row" href="https://data.worldbank.org/" target="_blank" rel="noopener"><span class="source-name">World Bank Open Data</span><span class="source-desc">Global development indicators and country-level data</span></a>
+            <a class="source-row" href="https://databank.worldbank.org/" target="_blank" rel="noopener"><span class="source-name">World Bank DataBank</span><span class="source-desc">Customizable World Bank data tables and time series</span></a>
+            <a class="source-row" href="https://www.imf.org/en/Data" target="_blank" rel="noopener"><span class="source-name">IMF Data</span><span class="source-desc">Macroeconomic, financial, and country-level data</span></a>
+            <a class="source-row" href="https://data-explorer.oecd.org/" target="_blank" rel="noopener"><span class="source-name">OECD Data Portal</span><span class="source-desc">International statistics on policy, economy, education, and society</span></a>
+            <a class="source-row" href="https://data.un.org/" target="_blank" rel="noopener"><span class="source-name">UN Data</span><span class="source-desc">United Nations statistical databases across many domains</span></a>
+            <a class="source-row" href="https://hdr.undp.org/data-center" target="_blank" rel="noopener"><span class="source-name">UNDP Data</span><span class="source-desc">Human development indicators and country profiles</span></a>
+            <a class="source-row" href="https://ilostat.ilo.org/" target="_blank" rel="noopener"><span class="source-name">ILOStat</span><span class="source-desc">Labor market statistics and employment indicators</span></a>
+            <a class="source-row" href="https://www.who.int/data/gho" target="_blank" rel="noopener"><span class="source-name">WHO GHO</span><span class="source-desc">Health indicators and public health data</span></a>
+          </div>
 
-  </div>
+          <h3>Food, agriculture, and water data</h3>
+          <div class="source-list food">
+            <a class="source-row" href="https://www.fao.org/faostat/" target="_blank" rel="noopener"><span class="source-name">FAOSTAT</span><span class="source-desc">Food and agriculture production, trade, emissions, and land-use data</span></a>
+            <a class="source-row" href="https://www.fao.org/aquastat/en/" target="_blank" rel="noopener"><span class="source-name">FAO AQUASTAT</span><span class="source-desc">Water resources and agricultural water-use data</span></a>
+            <a class="source-row" href="https://dataviz.vam.wfp.org/" target="_blank" rel="noopener"><span class="source-name">WFP Data</span><span class="source-desc">Food security, vulnerability, and market monitoring data</span></a>
+            <a class="source-row" href="https://www.ifpri.org/data" target="_blank" rel="noopener"><span class="source-name">IFPRI Data</span><span class="source-desc">Food policy, agriculture, nutrition, and development datasets</span></a>
+            <a class="source-row" href="https://quickstats.nass.usda.gov/" target="_blank" rel="noopener"><span class="source-name">USDA NASS</span><span class="source-desc">US agriculture survey and census data</span></a>
+          </div>
 
-  <!-- Footer -->
+          <h3>Climate, environment, and earth observation</h3>
+          <div class="source-list climate">
+            <a class="source-row" href="https://www.earthdata.nasa.gov/" target="_blank" rel="noopener"><span class="source-name">NASA Earthdata</span><span class="source-desc">Satellite and earth observation data products</span></a>
+            <a class="source-row" href="https://www.ncei.noaa.gov/cdo-web/" target="_blank" rel="noopener"><span class="source-name">NOAA CDO</span><span class="source-desc">Climate, weather, and environmental data archives</span></a>
+            <a class="source-row" href="https://www.worldclim.org/" target="_blank" rel="noopener"><span class="source-name">WorldClim</span><span class="source-desc">Global climate layers for ecological and spatial modeling</span></a>
+            <a class="source-row" href="https://uaf-snap.org/get-data/" target="_blank" rel="noopener"><span class="source-name">SNAP</span><span class="source-desc">Arctic and Alaska climate datasets and projections</span></a>
+            <a class="source-row" href="https://cds.climate.copernicus.eu/" target="_blank" rel="noopener"><span class="source-name">Copernicus CDS</span><span class="source-desc">Climate reanalysis, observations, and projections</span></a>
+            <a class="source-row" href="https://earthexplorer.usgs.gov/" target="_blank" rel="noopener"><span class="source-name">USGS EarthExplorer</span><span class="source-desc">Landsat, aerial imagery, and other earth observation data</span></a>
+            <a class="source-row" href="https://www.epa.gov/data" target="_blank" rel="noopener"><span class="source-name">EPA Data</span><span class="source-desc">Environmental monitoring and regulatory data</span></a>
+          </div>
+
+          <h3>Biodiversity, ecology, and land data</h3>
+          <div class="source-list ecology">
+            <a class="source-row" href="https://www.gbif.org/" target="_blank" rel="noopener"><span class="source-name">GBIF</span><span class="source-desc">Global biodiversity occurrence records for ecological analysis</span></a>
+            <a class="source-row" href="https://www.globalforestwatch.org/" target="_blank" rel="noopener"><span class="source-name">Global Forest Watch</span><span class="source-desc">Forest cover, deforestation, and land-use monitoring data</span></a>
+            <a class="source-row" href="https://www.iucnredlist.org/" target="_blank" rel="noopener"><span class="source-name">IUCN Red List</span><span class="source-desc">Species extinction risk and conservation status information</span></a>
+            <a class="source-row" href="https://mapbiomas.org/" target="_blank" rel="noopener"><span class="source-name">MapBiomas</span><span class="source-desc">Land cover and land-use change maps for multiple regions</span></a>
+            <a class="source-row" href="https://www.mrlc.gov/" target="_blank" rel="noopener"><span class="source-name">NLCD</span><span class="source-desc">US National Land Cover Database products</span></a>
+          </div>
+
+          <h3>Economic, social, and policy data</h3>
+          <div class="source-list economic">
+            <a class="source-row" href="https://fred.stlouisfed.org/" target="_blank" rel="noopener"><span class="source-name">FRED</span><span class="source-desc">Economic time series from the Federal Reserve Bank of St. Louis</span></a>
+            <a class="source-row" href="https://www.bea.gov/data" target="_blank" rel="noopener"><span class="source-name">BEA Data</span><span class="source-desc">US economic accounts and regional economic data</span></a>
+            <a class="source-row" href="https://www.bls.gov/data/" target="_blank" rel="noopener"><span class="source-name">BLS Data</span><span class="source-desc">Labor statistics, employment, wages, and price indexes</span></a>
+            <a class="source-row" href="https://data.census.gov/" target="_blank" rel="noopener"><span class="source-name">US Census Data</span><span class="source-desc">Population, demographic, housing, and community data</span></a>
+            <a class="source-row" href="https://www.ipums.org/" target="_blank" rel="noopener"><span class="source-name">IPUMS</span><span class="source-desc">Integrated census and survey microdata for population research</span></a>
+            <a class="source-row" href="https://ourworldindata.org/" target="_blank" rel="noopener"><span class="source-name">Our World in Data</span><span class="source-desc">Curated global indicators with visualizations and documentation</span></a>
+          </div>
+        </section>
+
+        <section id="courses" class="resource-section">
+          <h2>Open Courses</h2>
+          <h3>Statistics and data science</h3>
+          <div class="source-list courses">
+            <a class="source-row" href="https://www.openintro.org/" target="_blank" rel="noopener"><span class="source-name">OpenIntro</span><span class="source-desc">Open textbooks, labs, and teaching materials for statistics</span></a>
+            <a class="source-row" href="https://seeing-theory.brown.edu/" target="_blank" rel="noopener"><span class="source-name">Seeing Theory</span><span class="source-desc">Interactive visual explanations of probability and statistics</span></a>
+            <a class="source-row" href="https://www.statlearning.com/" target="_blank" rel="noopener"><span class="source-name">ISLR</span><span class="source-desc">Free textbook and companion materials for statistical learning</span></a>
+          </div>
+          <h3>Machine learning and AI</h3>
+          <div class="source-list ai">
+            <a class="source-row" href="https://www.deeplearningbook.org/" target="_blank" rel="noopener"><span class="source-name">Deep Learning Book</span><span class="source-desc">Open online book by Goodfellow, Bengio, and Courville</span></a>
+            <a class="source-row" href="https://distill.pub/" target="_blank" rel="noopener"><span class="source-name">Distill</span><span class="source-desc">Visual essays on machine learning and interpretability</span></a>
+          </div>
+        </section>
+
+        <section id="conferences" class="resource-section">
+          <h2>Conferences</h2>
+          <h3>Statistics</h3>
+          <div class="source-list conference">
+            <a class="source-row" href="https://ww2.amstat.org/meetings/jsm/" target="_blank" rel="noopener"><span class="source-name">JSM</span><span class="source-desc">Joint Statistical Meetings from the statistics community</span></a>
+          </div>
+          <h3>Machine learning and AI</h3>
+          <div class="source-list ai">
+            <a class="source-row" href="https://neurips.cc/" target="_blank" rel="noopener"><span class="source-name">NeurIPS</span><span class="source-desc">Conference information and materials from ML research</span></a>
+            <a class="source-row" href="https://icml.cc/" target="_blank" rel="noopener"><span class="source-name">ICML</span><span class="source-desc">International Conference on Machine Learning</span></a>
+            <a class="source-row" href="https://iclr.cc/" target="_blank" rel="noopener"><span class="source-name">ICLR</span><span class="source-desc">International Conference on Learning Representations</span></a>
+          </div>
+        </section>
+
+        <section id="jobs" class="resource-section">
+          <h2>Jobs and Internships</h2>
+          <h3>Academic and STEM opportunities</h3>
+          <div class="source-list jobs">
+            <a class="source-row" href="https://www.pathwaystoscience.org/" target="_blank" rel="noopener"><span class="source-name">Pathways to Science</span><span class="source-desc">STEM fellowships, internships, and funding opportunities</span></a>
+            <a class="source-row" href="https://www.amstat.org/your-career" target="_blank" rel="noopener"><span class="source-name">ASA Careers</span><span class="source-desc">Career guidance and resources for statisticians</span></a>
+          </div>
+          <h3>Data science and AI roles</h3>
+          <div class="source-list jobs">
+            <a class="source-row" href="https://www.datajobs.com/" target="_blank" rel="noopener"><span class="source-name">DataJobs</span><span class="source-desc">Job listings in data science, analytics, and related fields</span></a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
   <footer>
-    © 2025 Mahedi Hasan | Designed for academic use
+    &copy; 2026 Mahedi Hasan | Designed for Academic Use
   </footer>
 
+  <script src="assets/js/site-search.js"></script>
 </body>
 </html>

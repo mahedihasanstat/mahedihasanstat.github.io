@@ -1,0 +1,386 @@
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: #1b1b1b;
+  font-size: 14px;
+  line-height: 1.45;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-nav {
+  background-color: #1f77b4;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  font-size: 1.05rem;
+}
+
+.site-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.28rem 0.55rem;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+.site-nav a.active {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+.site-search {
+  position: relative;
+  width: min(190px, 100%);
+}
+
+.site-search label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.site-search input {
+  width: 100%;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.42rem 0.7rem;
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.search-results {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  width: min(360px, 90vw);
+  max-height: 320px;
+  overflow-y: auto;
+  background: #fff;
+  color: #222;
+  border: 1px solid #d7e6f3;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  text-align: left;
+}
+
+.search-results.is-visible {
+  display: block;
+}
+
+.search-results a,
+.search-results div {
+  display: block;
+  padding: 0.75rem;
+  color: #222;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: normal;
+  border-bottom: 1px solid #edf3f8;
+}
+
+.search-results a:hover {
+  background: #f4faff;
+  text-decoration: none;
+}
+
+.search-results strong {
+  display: block;
+  color: #1f77b4;
+  margin-bottom: 0.2rem;
+}
+
+.search-results span {
+  display: block;
+  color: #555;
+  line-height: 1.35;
+}
+
+mark.search-highlight {
+  background: #fff2a8;
+  color: inherit;
+  padding: 0 0.12rem;
+  border-radius: 3px;
+}
+
+main {
+  width: min(980px, calc(100% - 2rem));
+  margin: 1.5rem auto;
+  flex: 1;
+}
+
+.course-layout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.back-link {
+  color: #1f77b4;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.course-sidebar {
+  position: sticky;
+  top: 5.2rem;
+  padding: 0.75rem;
+  border: 1px solid #dce8f2;
+  border-radius: 6px;
+  background: #f7fbff;
+}
+
+.course-sidebar h2 {
+  margin: 0 0 0.5rem;
+  color: #1f77b4;
+  font-size: 1rem;
+}
+
+.course-sidebar a {
+  display: block;
+  padding: 0.42rem 0.5rem;
+  color: #1f77b4;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.course-sidebar a:hover {
+  background: #e9f4ff;
+}
+
+.course-sidebar a.active {
+  background: #e9f4ff;
+  color: #124e78;
+}
+
+.course-content {
+  min-width: 0;
+}
+
+h1 {
+  margin: 0.85rem 0 0.2rem;
+  color: #1f77b4;
+  font-size: 1.55rem;
+}
+
+.meta {
+  margin: 0 0 1rem;
+  color: #555;
+}
+
+h2 {
+  color: #1f77b4;
+  font-size: 1.15rem;
+  margin: 1.15rem 0 0.45rem;
+}
+
+.content-box {
+  border: 1px solid #dce8f2;
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  background: #fff;
+}
+
+.content-box p {
+  margin: 0 0 0.6rem;
+}
+
+.content-box p:last-child {
+  margin-bottom: 0;
+}
+
+.content-box ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.content-box li {
+  margin-bottom: 0.28rem;
+}
+
+.content-box li:last-child {
+  margin-bottom: 0;
+}
+
+.content-box ul ul {
+  margin-top: 0.2rem;
+}
+
+.course-note {
+  border-left: 4px solid #d39b24;
+  background: #fff8e8;
+  color: #604414;
+  font-weight: 700;
+  padding: 0.45rem 0.6rem;
+  border-radius: 4px;
+}
+
+.course-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #dce8f2;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-size: 0.82rem;
+}
+
+.course-table th,
+.course-table td {
+  padding: 0.28rem 0.42rem;
+  border-bottom: 1px solid #e6eef5;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.25;
+}
+
+.course-table th {
+  background: #f4faff;
+  color: #1f77b4;
+  font-weight: 700;
+}
+
+.course-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.course-table tbody tr:nth-child(even) {
+  background: #fbf7f1;
+}
+
+.course-table a {
+  color: #1f77b4;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.course-table a:hover {
+  text-decoration: underline;
+}
+
+.course-table .col-lecture {
+  width: 3.8rem;
+  white-space: nowrap;
+}
+
+.course-table .col-date {
+  width: 5.6rem;
+  white-space: nowrap;
+}
+
+.course-table .col-slides {
+  width: 4.7rem;
+  white-space: nowrap;
+}
+
+.course-table .col-small {
+  width: 4.8rem;
+  white-space: nowrap;
+}
+
+.course-table .col-medium {
+  width: 6.5rem;
+  white-space: nowrap;
+}
+
+.exam-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+.exam-card {
+  border: 1px solid #dce8f2;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0.75rem;
+}
+
+.exam-card h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .site-nav {
+    gap: 0.4rem 1rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.92rem;
+  }
+
+  .site-nav a {
+    padding: 0.2rem 0;
+  }
+
+  .site-search {
+    width: min(100%, 420px);
+    order: 10;
+  }
+
+  .search-results {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(92vw, 420px);
+  }
+
+  .course-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .course-sidebar {
+    position: static;
+  }
+
+  .exam-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-nav {
+    justify-content: flex-start;
+  }
+
+  .site-nav a {
+    flex: 1 1 calc(50% - 0.5rem);
+    text-align: center;
+  }
+
+  .site-search {
+    flex: 1 1 100%;
+  }
+}
